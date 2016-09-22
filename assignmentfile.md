@@ -10,3 +10,4 @@
 10. dart可用的各种工具的解释部分
 11. 指引你到其他社区社区寻求dart相关问题帮助的解释部分
 12. 从web storm软件菜单找出webstrom 中dart开发的帮助文档
+    在help--help topics，找到How to--Dart Support--Preparing for Dart Development即可。
