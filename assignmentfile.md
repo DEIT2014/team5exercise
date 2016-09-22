@@ -33,9 +33,10 @@ Command-line tools（命令行工具），包括Pub package manager、Static ana
 11. 指引你到其他社区社区寻求dart相关问题帮助的解释部分
 (http://stackoverflow.com/tags/dart)
 ```
-在dart官网中的Community and Support--How-to questions可以寻求相关问题帮助，也可以问一些问题。
+在dart官网中的Community and Support中的Community and Support--How-to questions可以寻求相关问题帮助，也可以问一些问题。
 ```
 12. 从web storm软件菜单找出webstrom 中dart开发的帮助文档
+（https://www.jetbrains.com/help/webstorm/2016.2/dart-support.html）
 ```
-打开web storm软件，在help--help topics，找到How to--Dart Support--Preparing for Dart Development即可。
+打开web storm软件，在help--help topics，找到How to--Dart Support即可，里面有详细的帮助文档，链接如上。
 ```
