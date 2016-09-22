@@ -7,8 +7,9 @@
 7. querySelector（）函数的详细API解释
 8. 详细解释dart如何操作html的文档
 9. dart web app 应用程序组织结构的解释部分
-编写web APP的步骤：http://www.dartlang.cc/codelabs/darrrt/
+http://www.dartlang.cc/codelabs/darrrt/
 ```
+编写web APP的步骤
 Step 0: 设置环境
 Step 1: 运行框架应用
 Step 2: 添加一个输入框
@@ -31,6 +32,10 @@ Command-line tools（命令行工具），包括Pub package manager、Static ana
 ```
 11. 指引你到其他社区社区寻求dart相关问题帮助的解释部分
 (http://stackoverflow.com/tags/dart)
+```
 在dart官网中的Community and Support--How-to questions可以寻求相关问题帮助，也可以问一些问题。
+```
 12. 从web storm软件菜单找出webstrom 中dart开发的帮助文档
+```
 打开web storm软件，在help--help topics，找到How to--Dart Support--Preparing for Dart Development即可。
+```
