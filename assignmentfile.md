@@ -1,4 +1,4 @@
-1. dart语言特性中的循环语句定义和操作方法
+###dart语言特性中的循环语句定义和操作方法
 ```
 if and else:
 1.if (isRaining()) {  
@@ -23,7 +23,7 @@ if and else:
 while和do while循环与javascript中一样，break,continue中也一样。
 switch使用==来判断对象是否相等。
 ```
-2. dart字符串的定义和操作方法
+###dart字符串的定义和操作方法
 ```
 在字符串中可以使用表达式，${expression}，该表达式的值将会作为字符串的一部分。如果表达式只是一个变量，可以不加大括号，即：$var
 1.var s ='string interpolation';  
@@ -63,7 +63,7 @@ void main() {
     // Do something with the file contents.
   });
 ```
-3. dart函数定义和使用方法
+###dart函数定义和使用方法
 
 ```
 定义一个函数：
@@ -104,7 +104,7 @@ void main() {
 2.List ages = [1,4,5,7,10,14,21];  
 3.List oddAges = ages.filter(isOdd);
 ```
-4. dart中数组定义和使用方法
+###dart中数组定义和使用方法
 ```
 在Dart中数组也叫列表list.
 定义一个数组：
@@ -143,7 +143,7 @@ void main() {
 2.list.forEach((element) => print(element));  
   list的父类是Collection,它提供了一系列操作集合的方法。
 ```
-5. dart中列表定义和使用方法
+###dart中列表定义和使用方法
 
 ```
 //Dart核心库提供了List（列表）、Map（映射）、Set（集）三种集合类型
@@ -354,7 +354,7 @@ List.generate(int length, E generator(int index), {bool growable: true}) // 用�
     listC.sort();
     print(listC);
 ```
-6. dart中 Map定义和使用方法
+###dart中 Map定义和使用方法
 ```
 一、①映射：即Map对象，定义一个map对象可以使用如下方式：
 var gifts = {                         // a map literal  
@@ -424,13 +424,13 @@ gifts.forEach((k,v) => print('$k : $v'));
     print(scores['Rohan']);
     print(scores['Sophena']);
 ```
-7. querySelector（）函数的详细API解释
+###querySelector（）函数的详细API解释
 ```
 ①querySelector() querySelector用于获得dom节点， 可以接受三种类型的参数：id(#)、class(.)、标签。该函数从 DOM 中获取一个 Element 对象。
 
 ②querySelector() 的参数为一个字符串， 该字符串为一个 CSS 选择器来指定要查询的对象。 常用的 CSS 选择器有 类选择器、ID 选择器和属性选择器。 后面当我们使用 CSS 文件的时候 再来详细看看这些选择器。 下面第八题中 RipVanWinkle 是 HTML 文件中 段落的唯一 ID， #RipVanWinkle 指定了该 ID。
 ```
-8. 详细解释dart如何操作html的文档
+###详细解释dart如何操作html的文档
 ```
 
      一、首先，我们要了解DOM。
@@ -474,8 +474,7 @@ void main() {
 总结：以上两段代码，就是通过标签'RipVanWinkle',使用querySelector()函数联系起来。querySelector()
 获取HTML文档中的DOM节点'RipVanWinkle'的段落元素。
 ```
-9. dart web app 应用程序组织结构的解释部分
-http://www.dartlang.cc/codelabs/darrrt/
+###dart web app 应用程序组织结构的解释部分 http://www.dartlang.cc/codelabs/darrrt/
 ```
 编写web APP的步骤
 Step 0: 设置环境
@@ -504,8 +503,8 @@ pirate_badge/
 运行app：
 在 WebStorm中，双击 web/index.html 打开文件，在右上角的浏览器按钮上点击 Dartium 按钮。
 ```
-10. dart可用的各种工具的解释部分
-(https://www.dartlang.org/tools)
+###dart可用的各种工具的解释部分  https://www.dartlang.org/tools
+
 ```
 Dartium 被用于开发web apps；
 WebStorm 集成开发环境，dart支持的；
@@ -514,13 +513,12 @@ DartPad 是一个好的方法来学习dart语法，并用dart语言进行实践�
 SDKs（软件开发工具包）；
 Command-line tools（命令行工具），包括Pub package manager、Static analyzer、Code    formatter，用于管理dart包，评估反馈编码中的错误，大多数sdks包含这些工具。
 ```
-11. 指引你到其他社区社区寻求dart相关问题帮助的解释部分
-(http://stackoverflow.com/tags/dart)
+###指引你到其他社区社区寻求dart相关问题帮助的解释部分  http://stackoverflow.com/tags/dart
+
 ```
 在dart官网中的Community and Support中的Community and Support--How-to questions可以寻求相关问题帮助，也可以问一些问题。
 ```
-12. 从web storm软件菜单找出webstrom 中dart开发的帮助文档
-（https://www.jetbrains.com/help/webstorm/2016.2/dart-support.html）
+###从web storm软件菜单找出webstrom 中dart开发的帮助文档   https://www.jetbrains.com/help/webstorm/2016.2/dart-support.html
 ```
 打开web storm软件，在help--help topics，找到How to--Dart Support即可，里面有详细的帮助文档，链接如上。
 ```
