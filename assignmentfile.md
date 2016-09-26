@@ -488,6 +488,22 @@ Step 6: 使用 HttpRequest 从 JSON 文件中读取姓名
 Step 7: 继续前行，了解 Dart 语言的更多特性
 Step 7: Build 该应用并作为 JavaScript 运行
 ```
+![](https://webdev.dartlang.org/codelabs/ng2/images/project-files.jpg)
+```dart
+比如一个项目名叫 pirate_badge，在 pirate_badge文件夹中，
+文件包括图片显示的文件；
+忽略一些自动产生的文件，则有如下文件：
+pirate_badge/
+  lib/
+    app_component.dart  展示数据通过定义类--components
+    app_component.html
+  web/
+    index.html
+    main.dart    main() 函数是app的唯一进入点
+  pubspec.yaml   这个文件包含包的元数据（描述数据的数据），比如名字；也列举了app依赖的包； 
+运行app：
+在 WebStorm中，双击 web/index.html 打开文件，在右上角的浏览器按钮上点击 Dartium 按钮。
+```
 10. dart可用的各种工具的解释部分
 (https://www.dartlang.org/tools)
 ```
