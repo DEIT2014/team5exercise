@@ -114,55 +114,65 @@ bool isOdd(num i) => i % 2 == 1;
 List ages = [1,4,5,7,10,14,21];  
 List oddAges = ages.filter(isOdd);
 ```
-##dart中数组定义和使用方法
-###在Dart中数组也叫列表list.
+##在Dart中数组也叫列表list.
 
 ###定义一个数组:
-var list = [1,2,3];    
+```
+var list = [1,2,3];  
+```
 
 ###操作数组：
+```
 var list = [1,2,3];  
 print(list.length); // the # of elements: 3  
 print(list[1]);     // the second item: 2  
+```
 
 ###给数组添加元素：
+```
 var list = [1,2,3];  
 list.add(4);  
+```
 
 ###从数组中删除一定范围内的元素：
+```
 var list = [1,2,3,4];  
 list.removeRange(2, 1); // remove the third element 
+```
  
 ###创建固定长度的数组：
+```
 var list = new List(3); //fixed-size list (full of null values)  
+```
 注意：固定长度的数组不能调用add,removeRange等方法改变其大小。
+
 
 ###可以使用for, for...in, 或forEach()几种方式遍历数组，
 *使用for:
-````
+```
 var list = [1,2,3];  
 for (var x = 0; x < list.length; x++) {  
  print('$x: ${list[x]}');  
 }  
-````
+```
   *for...in:
- ````
+```
 var list = [1,2,3];  
 for (final x in list) {  
 print(x);  
 }  
-````
+```
  * forEach():
-````
+```
 var list = [1,2,3]  
 void printElement(element) => print(element);  
 list.forEach(printElement);  
-````
+```
  *可更简洁的方式：
- ````
+ ```
 var list = [1,2,3];  
 list.forEach((element) => print(element));  
-````
+```
   list的父类是Collection,它提供了一系列操作集合的方法。
 ###dart中列表定义和使用方法
 
