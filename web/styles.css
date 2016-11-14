@@ -3,21 +3,12 @@
 
 html, body {
     width:100%;
+<<<<<<< HEAD
     height: 100%;
     margin: 0;
     padding: 10px;
     font-family: 'Roboto', sans-serif;
     background-color: beige;
-}
-#outline {
-    width: 600px;
-    height: 450px;
-    margin-top:20px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px; ;
-    font-family: 'Roboto', sans-serif;
-    background-color: aquamarine;
 }
 
 #bighead {
@@ -59,3 +50,42 @@ html, body {
     margin-left: auto;
 
 }
+=======
+    height:100%;
+    margin: 0;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #CFF;
+}
+
+#context{
+}
+#title {
+    font-family: "仿宋", "宋体";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: bold;
+    color: #000;
+    margin: 4px;
+}
+#stuname {
+    font-size: 12px;
+}
+#stunum {
+    font-size: 12px;
+}
+#title {
+    text-align: center;
+}
+#neirong{
+}
+#stulogin{
+    width:30%;
+    height: 30%;
+}
+#techlogin{
+    width:30%;
+    height: 30%;
+}
+
+>>>>>>> origin/master
