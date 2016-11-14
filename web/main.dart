@@ -4,5 +4,13 @@
 import 'dart:html';
 
 void main() {
-  querySelector('#output').text = 'Your Dart app is running.';
+  querySelector('#stulogin').onClick.listen(xsym);
+  querySelector('#techlogin').onClick.listen(jsym);
+}
+
+void xsym(MouseEvent e) {
+ ///学生页面的数据
+}
+void jsym(MouseEvent e) {
+///教师页面的数据
 }

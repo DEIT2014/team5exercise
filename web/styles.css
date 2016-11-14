@@ -2,7 +2,7 @@
 
 html, body {
     width:100%;
-    height: 100%;
+    height:100%;
     margin: 0;
     padding: 10px;
     font-family: 'Roboto', sans-serif;
@@ -10,7 +10,6 @@ html, body {
 }
 
 #context{
-
 }
 #title {
     font-family: "仿宋", "宋体";
@@ -20,10 +19,10 @@ html, body {
     color: #000;
     margin: 4px;
 }
-#name {
+#stuname {
     font-size: 12px;
 }
-#num {
+#stunum {
     font-size: 12px;
 }
 #title {
@@ -31,3 +30,12 @@ html, body {
 }
 #neirong{
 }
+#stulogin{
+    width:30%;
+    height: 30%;
+}
+#techlogin{
+    width:30%;
+    height: 30%;
+}
+
