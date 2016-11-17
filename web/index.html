@@ -19,55 +19,90 @@
 
 <body>
 <div id="content">
-    <div id="top" >
-        <p align="center" id="title" >奖学金评定系统</p>
+    <h1 align="center" >奖学金评定系统</h1>
 
-<<<<<<< HEAD
-<div id="content">
-            <div id="top" >
-                <p align="center" id="title" fontsize="100px">奖学金评定系统</p>
-           <div align="center" id="introduce">
-               <form id="form1" name="form1" method="post" action="" >
-                   <table width="589" height="24" border="0" align="center">
-                       <tr>
-                          <td width="190" height="20" id="name"><table width="600" border="0" align="center">
-                               <tr>
-                                   <td width="190" height="14" id="name2">姓名：</td>
-                                    <td width="189" id="num" align="right"> 工号：</td>
-                                </tr>
-                         </table></td>
-                     </tr>
-                   </table>
-                </form>
-          </div>
-
-    <div id="output"></div>
-=======
-    </div>
     <div id="neirong">
->>>>>>> origin/master
+        <table id="stu_namenum">
+            <tr>
+                <td id="stuname"></td>
+                <td id="stunum"></td>
+            </tr>
+        </table>
 
-            <table width="588" height="24" border="0" align="center">
+        <table id="tea_namenum">
+            <tr>
+                <td id="teaname"></td>
+                <td id="teanum"></td>
+            </tr>
+        </table>
 
-                        <tr>
-                            <td width="300" height="30" ><button id="yhm">用户名</button></td>
-                            <td width="300" height="150"  align="right"><fieldset id="yhm1"></fieldset></td>
-                        </tr>
-                        <tr>
-                            <td width="300" height="150" ><button id="mm">密码</button></td>
-                            <td width="300" height="150"  align="right"><fieldset id="mm1"></fieldset></td>
-                        </tr>
-            </table>
+        <table id="login" align="center">
+            <tbody>
+            <tr >
+                <td align="right">用户名:</td>
+                <td></td>
+                <td><input type="text" id="login_yhm"></td>
+            </tr>
+            <tr>
+                <td align="right">密码:</td>
+                <td></td>
+                <td><input type="text" id="login_mm"></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td><button id="stulogin">学生登录</button></td>
+                <td> </td>
+                <td><button id="tealogin">教师登录</button></td>
+            </tr>
+            </tbody>
+        </table>
 
 
-            <table width="588" height="24" border="0" align="center">
-                        <tr>
-                            <td width="300" height="150" ><button id="stulogin">学生登录</button></td>
-                            <td width="300" height="150"  align="right"><button id="techlogin">教师登录</button></td>
-                        </tr>
-            </table>
+        <table id="stushow">
+            <tr >
+                <td id="xkcj"></td>
+                <td id="xsky"></td>
+                <td id="shhd"></td>
+                <td id="jxjlevel"></td>
+            </tr>
+            <tr>
+                <td id="xkcjscore"></td>
+                <td id="xskyscore"></td>
+                <td id="shhdscore"></td>
+                <td id="jxjlevelscore"></td>
+            </tr>
+            <tr >
+                <td id="zpscore"></td>
+                <td id="data_chart"></td>
+            </tr>
+        </table>
+
+        <table id="teachshow" >
+            <tr><div id="search_stuname">
+                <form action="http://localhost:4041"
+                      method="GET">
+
+
+                </form>
+            </div>
+            </tr>
+
+            <tr>
+
+            </tr>
+            <tr>
+
+            </tr>
+        </table>
     </div>
 </div>
 </div>
 </body>
 </html>
+
+
+
+
+
+

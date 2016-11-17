@@ -1,91 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
-
 html, body {
-    width:100%;
-<<<<<<< HEAD
-    height: 100%;
-    margin: 0;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    background-color: beige;
+    background-color: #F8F8F8;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.2em;
+    margin: 15px;
 }
 
-#bighead {
-    width: 300px;;
-    height:45px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    padding: 20px;
-    font-family: "微软雅黑";
-    font-size: 36px;
-    text-align: center;
-    color: black;
-    background-color: yellow;
+
+table {
+    text-align: left;
+    border-spacing: 5px 15px
 }
 
-#name{
-    width: 160px;;
-    height:30px;
-    font-size: 20px;
-    margin-top: 10px;
-    margin-left: auto;
-    background-color: lawngreen;
-}
-
-#number{
-    width: 160px;;
-    height:30px;
-    font-size: 20px;
-    margin-top: auto;
-    margin-right: auto;
-    background-color: lawngreen;
-}
-#button{
-    width: 50px;
-    height: 20px;
-    margin-bottom: 20px;
-    float: right;
-    margin-left: auto;
-
-}
-=======
-    height:100%;
-    margin: 0;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #CFF;
-}
-
-#context{
-}
-#title {
-    font-family: "仿宋", "宋体";
-    font-size: 32px;
-    font-style: normal;
-    font-weight: bold;
-    color: #000;
-    margin: 4px;
-}
-#stuname {
-    font-size: 12px;
-}
-#stunum {
-    font-size: 12px;
-}
-#title {
-    text-align: center;
-}
-#neirong{
-}
-#stulogin{
-    width:30%;
-    height: 30%;
-}
-#techlogin{
-    width:30%;
-    height: 30%;
-}
-
->>>>>>> origin/master
