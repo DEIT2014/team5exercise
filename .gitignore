@@ -22,3 +22,6 @@ doc/api/
 *.ipr
 *.iws
 *.analysis_options
+web/index.html
+*.md
+web/styles.css
