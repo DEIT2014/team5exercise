@@ -35,7 +35,7 @@ forno_login(request)
 {
   return new Response.ok();
 }
-///登陆成功页面
+///登陆页面
 forlogin(request)
 {
   return new Response.ok();
