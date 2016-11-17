@@ -3,14 +3,30 @@
 
 import 'dart:html';
 
-void main() {
-  querySelector('#stulogin').onClick.listen(xsym);
-  querySelector('#techlogin').onClick.listen(jsym);
-}
+String note;
 
-void xsym(MouseEvent e) {
- ///学生页面的数据
+TextInputElement TextInput;
+ParagraphElement displayNote;
+TableElement displayTable;
+
+void main() {
+
+  TextInput = querySelector('#login_yhm');
+  TextInput = querySelector('#login_mm');
+
+  querySelector('#stulogin').onClick.listen(xsym);
+  querySelector('#tealogin').onClick.listen(jsym);
 }
-void jsym(MouseEvent e) {
+///学生页面的数据
+void xsym(MouseEvent e) {
+//todo 访问数据库，获取所有学生数据，并格式化为json
+  displayTable = querySelector('#stu_namenum');
+  displayTable = querySelector('#stushow');
+
+}
 ///教师页面的数据
+void jsym(MouseEvent e) {
+//todo 访问数据库，获取所有学生数据，并格式化为json
+  displayTable = querySelector('#tea_namenum');
+  displayTable = querySelector('#teashow');
 }
