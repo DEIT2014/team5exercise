@@ -15,6 +15,7 @@ dev_dependencies:
   dart_to_js_script_rewriter: '^1.0.1'
   shelf:
   shelf_route:
+  sqljocky:
 
 transformers:
 - dart_to_js_script_rewriter
