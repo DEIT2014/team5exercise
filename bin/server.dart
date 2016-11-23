@@ -7,11 +7,11 @@ import 'dart:io';
 
 Future main() async {//怎么把登录的数据转换成json文件？
 
-  var pool = new ConnectionPool(host: '127.0.0.1', port: 3306, user: 'suzyfish', password: 'suzyfish', db: 'team5数据库', max: 5);//从数据库取出用户名和密码
+  var pool = new ConnectionPool(host: 'localhost', port: 3306, user: 'suzyfish',  db: 'teamfive', max: 5);//从数据库取出用户名和密码
   var results = await pool.query('select yhm,mm from users');
   final filename = 'yhm_mm.json';
   results.forEach((row) {
-    print('用户名: ${row.yhm}, 密码: ${row.mm}');
+    print('login_name: ${row.yhm}, login_key: ${row.mm}');
     new File(filename).writeAsString('{"${row.yhm}":"${row.mm}"}')
         .then((File file){
 

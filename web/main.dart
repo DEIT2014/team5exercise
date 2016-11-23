@@ -2,6 +2,8 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:html';
+import 'package:sqljocky/sqljocky.dart';
+import 'dart:async';
 
 String note;
 
@@ -25,7 +27,7 @@ void main() {
 void sign_in(MouseEvent e){
   //todo 记录输入的用户名和密码并与数据库进行比较，
   //todo 若对比成功，隐藏登录界面，显示教师或者学生界面（根据相应的标志值判断）
-
+  querySelector('#stu_namenum').text= 'haha';
 
 }
 
@@ -58,8 +60,13 @@ void xsym(MouseEvent e) {
 
 }
 
-void stu_show(){
-  //todo 取出数据库的数据
+Future  stu_show() async {
+  var pool = new ConnectionPool(host: 'localhost', port: 3306, user: 'suzyfish',  db: 'teamfive', max: 5);//从数据库取出用户名和密码
+  var results = await pool.query('select yhm,mm from users');
+  final filename = 'yhm_mm.json';
+  results.forEach((row) {
+    querySelector('#stu_namenum').text= '${row.yhm}; login_key: ${row.mm}';
+  });//todo 取出数据库的数据
   // todo 根据数据库数据与Json文件数据设计奖学金分配表格并返回数据
 }
 
