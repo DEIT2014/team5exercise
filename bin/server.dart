@@ -5,6 +5,7 @@ import 'package:sqljocky/sqljocky.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:route_hierarchical/client.dart';
+import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 
 Future main() async {//怎么把登录的数据转换成json文件？
 
@@ -18,9 +19,23 @@ Future main() async {//怎么把登录的数据转换成json文件？
 
     });
   });
+//shelf_cors
+/*  shelf.Response handleAll(shelf.Request request) {
+    return new shelf.Response.ok("OK");
+  }
 
+  var handler = const shelf.Pipeline()
+      .addMiddleware(shelf_cors.createCorsHeadersMiddleware())
+      .addHandler(handleAll);
 
-
+  shelf_io.serve(handler, InternetAddress.ANY_IP_V4, port).then((server) {
+    print("Serving at http://${server.address.host}:${server.port}");
+  });
+void addCorsHeaders(HttpResponse res) {
+  res.headers.add("Access-Control-Allow-Origin", "*");//解除限制
+  res.headers.add("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.headers.add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+}*/
   var myRouter = router()
     ..get('/', responseRoot);
   /*  ..get('/login', forlogin)
