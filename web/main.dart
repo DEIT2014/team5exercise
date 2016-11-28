@@ -4,13 +4,17 @@
 import 'dart:html';
 import 'package:sqljocky/sqljocky.dart';
 import 'dart:async';
+import 'dart:convert' show JSON;
+import 'dart:core'as core;
+import  'dart:convert';
+import 'dart:core';
+
 
 String note;
-
 TextInputElement TextInput;
 ParagraphElement displayNote;
 TableElement displayTable;
-
+var host = 'http://localhost:8080';
 
 void main() {
 ///登陆界面
@@ -32,13 +36,16 @@ void sign_in(MouseEvent e){
 }
 
 
-
 ///点击学生登陆按钮后的响应事件
 ///学生页面的数据
 void xsym(MouseEvent e) {
 //todo 访问数据库，获取所有学生数据，并格式化为json
-  displayTable = querySelector('#stu_namenum');
-  displayTable = querySelector('#stushow');
+  print ("Loading data");//调试
+  var url = "http://$host/student/{stuid_x}"; // 链接到学生主页面
+  var request = HttpRequest.getString(url).then(onDataLoaded);
+
+querySelector('#stuname').text="学生姓名：如花";
+querySelector('#stusnum').text="学生学号：1001";
 
 ///学生奖学金信息界面
   displayTable=querySelector('#stu_show'); //奖学金分配表格
@@ -60,14 +67,14 @@ void xsym(MouseEvent e) {
 
 }
 
-Future  stu_show() async {
-  var pool = new ConnectionPool(host: 'localhost', port: 3306, user: 'suzyfish',  db: 'teamfive', max: 5);//从数据库取出用户名和密码
-  var results = await pool.query('select yhm,mm from users');
-  final filename = 'yhm_mm.json';
-  results.forEach((row) {
-    querySelector('#stu_namenum').text= '${row.yhm}; login_key: ${row.mm}';
-  });//todo 取出数据库的数据
-  // todo 根据数据库数据与Json文件数据设计奖学金分配表格并返回数据
+onDataLoaded(responseText) {
+
+  var jsonString = responseText;
+  Map stu_allDATA=JSON.decode(jsonString);
+  querySelector("#xkcjscore").text =  stu_allDATA["如花"]["xkcj"].toString();
+  querySelector("#xskyscore").text =  stu_allDATA["如花"]["xsky"].toString();
+  querySelector("#shhdscore").text =  stu_allDATA["如花"]["shhd"].toString();
+  querySelector("#jxjlevelscore").text =  stu_allDATA["如花"]["jxj"].toString();
 }
 
 /// 显示成绩分析扇形图
