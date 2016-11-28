@@ -44,9 +44,6 @@ void xsym(MouseEvent e) {
   var url = "http://$host/student/{stuid_x}"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded);
 
-querySelector('#stuname').text="学生姓名：如花";
-querySelector('#stusnum').text="学生学号：1001";
-
 ///学生奖学金信息界面
   displayTable=querySelector('#stu_show'); //奖学金分配表格
   querySelector('#data_chart').onClick.listen(data_chart_show);;//成绩分配扇形图
@@ -71,10 +68,14 @@ onDataLoaded(responseText) {
 
   var jsonString = responseText;
   Map stu_allDATA=JSON.decode(jsonString);
-  querySelector("#xkcjscore").text =  stu_allDATA["如花"]["xkcj"].toString();
-  querySelector("#xskyscore").text =  stu_allDATA["如花"]["xsky"].toString();
-  querySelector("#shhdscore").text =  stu_allDATA["如花"]["shhd"].toString();
-  querySelector("#jxjlevelscore").text =  stu_allDATA["如花"]["jxj"].toString();
+
+  querySelector('#stuname').text="学生姓名：如花";
+  querySelector('#stusnum').text="学生学号：1001";
+
+  querySelector("#xkcjscore").text =  stu_allDATA["stuname0"]["xkcj"].toString();
+  querySelector("#xskyscore").text =  stu_allDATA["stuname0"]["xsky"].toString();
+  querySelector("#shhdscore").text =  stu_allDATA["stuname0"]["shhd"].toString();
+  querySelector("#jxjlevelscore").text =  stu_allDATA["stuname0"]["jxj"].toString();
 }
 
 /// 显示成绩分析扇形图
