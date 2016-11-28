@@ -1,20 +1,36 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
-html, body {
-    background-color: #F8F8F8;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.2em;
-    margin: 15px;
-}
+
 
 
 table {
     text-align: left;
     border-spacing: 5px 15px
 }
+body  {
 
+    background-color: #f0f0f0;
+
+    background-image: url(beijing.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+#content{
+
+
+
+
+
+
+
+}
+h1 {
+    font-family: "华文中魏";
+   font-size:30px ;
+
+    color: firebrick;
+}
 #output {
     font-family: "华文楷体";
     font-size: 20px;
@@ -31,4 +47,26 @@ table {
     float: right;
     margin-left: auto;
 
+}
+section {
+    display: none;
+    width: 600px;
+    height: 400px;
+    border: solid 1px #888;
+}
+section.selected {
+    display: block;
+}
+a:link{
+    text-decoration: none;
+    color: darkorange;
+   font-weight: lighter;
+    border-color: whitesmoke;
+
+}
+a:hover{
+    text-decoration: none;
+    color: darkorange;
+    font-weight: bolder;
+    border-color: whitesmoke;
 }
