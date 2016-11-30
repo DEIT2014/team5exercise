@@ -110,7 +110,7 @@ Future<shelf.Response> forstuid(shelf.Request request) async {
 
   //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok(
-      'server successfully get data from database: ${userName}'
+      ' ${userName}'
         );
 }
 

@@ -7,8 +7,7 @@ description: An absolute bare-bones web app.
 environment:
   sdk: '>=1.0.0 <2.0.0'
 
-dependencies:
-   route_hierarchical: any
+
 
 #  my_dependency: any
 
@@ -19,6 +18,7 @@ dev_dependencies:
   shelf_route:
   sqljocky:
   shelf_cors:
+  route_hierarchical: any
 
 transformers:
 - dart_to_js_script_rewriter
