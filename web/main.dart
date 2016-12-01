@@ -23,8 +23,8 @@ void main() {
  var router = new Router(useFragment: true);
 
  router.root
-  ..addRoute(name: 'stu_login', defaultRoute: true, path: '/student/{stuid_x}', enter: enter_stu_login);
- //  ..addRoute(name: 'tealogin', path: '/teacher/{teaid_x}', enter: enter_tealogin);
+  ..addRoute(name: 'stu_login', defaultRoute: true, path: '/student/{stuid_x}', enter: enter_stu_login)
+  ..addRoute(name: 'tea_login', path: '/teacher/{teaid_x}', enter: enter_tea_login);
 
  querySelector('#link_stu').attributes['href'] = router.url('stu_login');
  querySelector('#link_tea').attributes['href'] = router.url('tea_login');
@@ -41,6 +41,11 @@ void enter_stu_login(RouteEvent e) {
 
   querySelector('#stu_login').classes.add('selected');
   querySelector('#tea_login').classes.remove('selected');
+}
+void enter_tea_login(RouteEvent e) {
+  print("showTwo");
+  querySelector('#stu_login').classes.remove('selected');
+  querySelector('#tea_login').classes.add('selected');
 }
 /// 用来接受用户点击登录按钮以后的响应工作
 void sign_in(MouseEvent e){
