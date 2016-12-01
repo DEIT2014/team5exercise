@@ -20,7 +20,7 @@ void main() {
   TextInput = querySelector('#login_mm');//用户密码输入
   //点击学生登录和教师登录链接
   querySelector('#link_stu').onClick.listen(enter_stu);
- var router = new Router(useFragment: true);
+/* var router = new Router(useFragment: true);
 
  router.root
   ..addRoute(name: 'stu_login', defaultRoute: true, path: '/student/{stuid_x}', enter: enter_stu_login)
@@ -29,15 +29,14 @@ void main() {
  querySelector('#link_stu').attributes['href'] = router.url('stu_login');
  querySelector('#link_tea').attributes['href'] = router.url('tea_login');
 
- router.listen();
+ router.listen();*/
 
   //点击学生登陆按钮
  // querySelector('#tealogin').onClick.listen(sign_in);//点击教师登录按钮
 
 }
 
-
-void enter_stu_login(RouteEvent e) {
+/*void enter_stu_login(RouteEvent e) {
 
   querySelector('#stu_login').classes.add('selected');
   querySelector('#tea_login').classes.remove('selected');
@@ -46,7 +45,7 @@ void enter_tea_login(RouteEvent e) {
   print("showTwo");
   querySelector('#stu_login').classes.remove('selected');
   querySelector('#tea_login').classes.add('selected');
-}
+}*/
 /// 用来接受用户点击登录按钮以后的响应工作
 void sign_in(MouseEvent e){
   //todo 记录输入的用户名和密码并与数据库进行比较，
@@ -61,7 +60,7 @@ void sign_in(MouseEvent e){
 void enter_stu(MouseEvent e) {
 //todo 访问数据库，获取所有学生数据，并格式化为json
   print("成功登陆");//调试
-  var url = "http://$host/student/{stuid_x}"; // 链接到学生主页面
+  var url = "$host/student/{stuid_x}"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded);
 
 /*
