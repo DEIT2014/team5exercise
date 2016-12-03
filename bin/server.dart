@@ -7,6 +7,7 @@ import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 import 'package:shelf_route/shelf_route.dart';
+import 'dart:convert' show JSON;
 
 Map<String, String> data = new Map();
 Map<String, String> value = new Map();
@@ -86,6 +87,7 @@ print('Serving at http://${server.address.host}:${server.port}');
 Future<String> getDataFromDb() async {
   var results = await pool.query('select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
   int i = 0;
+
   results.forEach((row) {
     //列出所有用户名
     String index = "stuname" + i.toString();
@@ -95,10 +97,13 @@ Future<String> getDataFromDb() async {
     value["xsky"]=row.xsky;
     value["shhd"]=row.shhd;
     value["jxj"]=row.jxj;
-    data[index] = JSON.encode(value);
+    String jsonValue = JSON.encode(value);
+    data[index] = jsonValue;
     i++;
   });
+
   String jsonData = JSON.encode(data);
+
   return jsonData;
 }
 
@@ -109,9 +114,7 @@ Future<shelf.Response> forstuid(shelf.Request request) async {
   String userName = await getDataFromDb();
 
   //把这个post过来的数据有返回给客户端
-  return new shelf.Response.ok(
-      ' ${userName}'
-        );
+  return new shelf.Response.ok('${userName}'    );
 }
 
 /*Future<shelf.Response> _echoRequest(shelf.Request request) async {
