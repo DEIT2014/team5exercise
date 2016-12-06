@@ -10,8 +10,12 @@ import 'package:shelf_route/shelf_route.dart';
 import 'dart:convert' show JSON;
 import '../lib/stu_class.dart';
 
+
 Map<String, String> data = new Map();
 Map<String, String> value = new Map();
+Map<String, String> data1 = new Map();
+Map<String, String> value1 = new Map();
+
 final pool = new ConnectionPool(host: "localhost",
     port: 3306,
     user: 'suzyfish',
@@ -35,7 +39,7 @@ Future main(List<String> args)async {
    // myRouter.get('/login', forlogin);
     //myRouter.get('/no_login', forno_login);
     myRouter.get('/student/{stuid_x}', forstuid);
-   // myRouter.get('/teacher/{teaid_x}', forteaid);
+    myRouter.get('/teacher/{teaid_x}', forteaid);
     //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
 
 
@@ -112,11 +116,20 @@ Future<String> getDataFromDb() async {
     data[index] = stu;
     i++;
   });
-
-  String jsonData = JSON.encode(data);
-
-  return jsonData;
-}
+  Future<String> getDataFromDb1() async {
+      var results = await pool.query('select teaname,teaid from tealogin');
+      int i = 0;
+      results.forEach((row) {
+        //列出所有用户名
+        String index1 = "teaname" + i.toString();
+        value1["teaname"]=row.teaname;
+        value1["teaid"]=row.teaid;
+        data1[index] = JSON.encode(value1);
+        i++;
+      });
+      String jsonData = JSON.encode(data1);
+      return jsonData;
+    }
 
 
 
@@ -127,6 +140,15 @@ Future<shelf.Response> forstuid(shelf.Request request) async {
   //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok('${userName}'    );
 }
+  Future<shelf.Response> forteaid(shelf.Request request) async {
+      //从数据库获取数据
+      String userName1 = await getDataFromDb1();
+
+      //把这个post过来的数据有返回给客户端
+      return new shelf.Response.ok(
+          ' ${userName1}'
+      );
+    }
 
 /*Future<shelf.Response> _echoRequest(shelf.Request request) async {
   //接受post过来的数据
