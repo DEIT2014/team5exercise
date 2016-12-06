@@ -1,0 +1,1 @@
+export 'stu_class.dart';

@@ -8,6 +8,7 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 import 'package:shelf_route/shelf_route.dart';
 import 'dart:convert' show JSON;
+import '../lib/stu_class.dart';
 
 Map<String, String> data = new Map();
 Map<String, String> value = new Map();
@@ -87,18 +88,28 @@ print('Serving at http://${server.address.host}:${server.port}');
 Future<String> getDataFromDb() async {
   var results = await pool.query('select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
   int i = 0;
-
+  var stuList;
   results.forEach((row) {
     //列出所有用户名
     String index = "stuname" + i.toString();
-    value["stuname"]=row.stuname;
+    /*value["stuname"]=row.stuname;
     value["stuid"]=row.stuid;
     value["xkcj"]=row.xkcj;
     value["xsky"]=row.xsky;
     value["shhd"]=row.shhd;
     value["jxj"]=row.jxj;
+  */
+    var stu=new student();
+    stu.name=row.name;
+    stu.id=row.id;
+    stu.xkcj=row.skcj;
+    stu.shhd=row.shhd;
+    stu.xsky=row.xsky;
+    stu.jxj=row.jxj;
+    value=stuList.add(stu);
+
     String jsonValue = JSON.encode(value);
-    data[index] = jsonValue;
+    data[index] = stu;
     i++;
   });
 

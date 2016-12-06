@@ -7,6 +7,7 @@ import 'dart:core'as core;
 import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
+import '../lib/stu_class.dart';
 
 String note;
 TextInputElement TextInput;
@@ -88,9 +89,9 @@ onDataLoaded(responseText) {
   var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
   Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());
-  querySelector('#stu_name').text="学生姓名："+ stu_allDATA2["stuname"];
-  querySelector('#stu_num').text="学生学号："+ stu_allDATA2["stuid"].toString();
- querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
+  querySelector('#stu_name').text="学生姓名："+ stu_allDATA2["name"];
+  querySelector('#stu_num').text="学生学号："+ stu_allDATA2["id"].toString();
+  querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
   querySelector("#xskyscore").text =  stu_allDATA2["xsky"];
   querySelector("#shhdscore").text =  stu_allDATA2["shhd"];
   querySelector("#jxjlevelscore").text =  stu_allDATA2["jxj"];
