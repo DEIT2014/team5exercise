@@ -21,16 +21,16 @@ void main() {
   TextInput = querySelector('#login_mm');//用户密码输入
   //点击学生登录和教师登录链接
   querySelector('#link_stu').onClick.listen(enter_stu);
- querySelector('#tealogin').onClick.listen(enter_tea);
+ //querySelector('#                        ').onClick.listen(enter_tea);
 
  var router = new Router(useFragment: true);
 
  router.root
-  ..addRoute(name: 'stu_login', defaultRoute: true, path: '/student/{stuid_x}', enter: enter_stu_login)
-  ..addRoute(name: 'tea_login',  path: '/teacher/{teaid_x}', enter: enter_tea_login);
+  ..addRoute(name: 'stu_login', defaultRoute: true, path: '/student/{stuid_x}', enter: enter_stu_login);
+  //..addRoute(name: 'tea_login',  path: '/teacher/{teaid_x}', enter: enter_tea_login);
 
  querySelector('#link_stu').attributes['href'] = router.url('stu_login');
- querySelector('#link_tea').attributes['href'] = router.url('tea_login');
+ //querySelector('#link_tea').attributes['href'] = router.url('tea_login');
 
  router.listen();
 }
@@ -50,7 +50,8 @@ void enter_tea(MouseEvent e){
   //todo 若对比成功，隐藏登录界面，显示教师或者学生界面（根据相应的标志值判断）
 
 //和学生一样
-
+  var url = "$host/teacher/{teaid_x}"; // 链接到学生主页面
+  var request = HttpRequest.getString(url).then(onDataLoaded1);
 }
 
 
@@ -63,6 +64,10 @@ void enter_stu(MouseEvent e) {
   var request = HttpRequest.getString(url).then(onDataLoaded);
 
 /*
+request=new HttpRequest();
+request.onReadyStateChange.listen(onDataLoaded);
+request.open("post",url);
+request.setRequestHeader("content-type";"");
 
 ///学生奖学金信息界面
   displayTable=querySelector('#stu_show'); //奖学金分配表格
@@ -85,6 +90,19 @@ void enter_stu(MouseEvent e) {
 }
 
 onDataLoaded(responseText) {
+
+  var jsonString = responseText;
+  Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
+  Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());
+  querySelector('#stu_name').text="学生姓名："+ stu_allDATA2["stuname"];
+  querySelector('#stu_num').text="学生学号："+ stu_allDATA2["stuid"].toString();
+  querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
+  querySelector("#xskyscore").text =  stu_allDATA2["xsky"];
+  querySelector("#shhdscore").text =  stu_allDATA2["shhd"];
+  querySelector("#jxjlevelscore").text =  stu_allDATA2["jxj"];
+
+}
+onDataLoaded1(responseText) {
 
   var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码

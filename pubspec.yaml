@@ -19,6 +19,7 @@ dev_dependencies:
   sqljocky:
   shelf_cors:
   route_hierarchical: any
+  json_object:
 
 transformers:
 - dart_to_js_script_rewriter

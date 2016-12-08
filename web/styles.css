@@ -6,9 +6,13 @@
 table {
     text-align: left;
     border-spacing: 5px 15px;
+    border: 1px;
 
+}
 
-
+table td{
+    border:solid #888888 1px;
+background-color: #888888;
 }
 body  {
 
@@ -47,13 +51,14 @@ h1 {
 
 }
 section {
-   display: none;
-    width: 600px;
+   display:none;
+    width: 1100px;
     height: 400px;
     border: solid 1px #888;
 }
 section.selected {
     display: block;
+
 }
 a:link{
     text-decoration: none;
@@ -68,3 +73,4 @@ a:hover{
     font-weight: bolder;
     border-color: whitesmoke;
 }
+

@@ -9,6 +9,7 @@ import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 import 'package:shelf_route/shelf_route.dart';
 import 'dart:convert' show JSON;
 import '../lib/stu_class.dart';
+import 'package:json_object/json_object.dart';
 
 
 Map<String, String> data = new Map();
@@ -22,27 +23,13 @@ final pool = new ConnectionPool(host: "localhost",
     db: 'teamfive',
     max: 5); //与数据库相连
 Future main(List<String> args)async {
-
-  //var results = await pool.query('select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-  /*final filename = 'stugrade.json';
-  results.forEach((row) {
-    print('stuname: ${row.stuname}, stuid: ${row.stuid},xkcj: ${row.xkcj},xsky: ${row.xsky},shhd: ${row.shhd},jxj: ${row.jxj}');
-    new File(filename).writeAsString('{"${row.stuname}":"${row.stuid}","${row.xkcj}","${row.xsky}","${row.shhd}","${row.jxj}"}')
-        .then((File file){
-
-    });
-  });*/
-
-
-  var myRouter = router();
+    var myRouter = router();
    // myRouter.get('/', responseRoot);
    // myRouter.get('/login', forlogin);
     //myRouter.get('/no_login', forno_login);
     myRouter.get('/student/{stuid_x}', forstuid);
     myRouter.get('/teacher/{teaid_x}', forteaid);
     //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
-
-
 Map <String, String> corsHeader = new Map();
 corsHeader["Access-Control-Allow-Origin"] = "*";
 corsHeader["Access-Control-Allow-Methods"] = 'POST,GET,OPTIONS';
@@ -89,33 +76,51 @@ print('Serving at http://${server.address.host}:${server.port}');
     return new Response.ok("Hello World");
   }*/
 }
+
 Future<String> getDataFromDb() async {
-  var results = await pool.query('select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
+  var results = await pool.query(
+      'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
   int i = 0;
-  var stuList;
+  List<student> stu=new List(2);
+  String jsonStr;
   results.forEach((row) {
     //列出所有用户名
     String index = "stuname" + i.toString();
-    /*value["stuname"]=row.stuname;
+ value["stuname"]=row.stuname;
     value["stuid"]=row.stuid;
     value["xkcj"]=row.xkcj;
     value["xsky"]=row.xsky;
     value["shhd"]=row.shhd;
     value["jxj"]=row.jxj;
-  */
-    var stu=new student();
-    stu.name=row.name;
-    stu.id=row.id;
-    stu.xkcj=row.skcj;
-    stu.shhd=row.shhd;
-    stu.xsky=row.xsky;
-    stu.jxj=row.jxj;
-    value=stuList.add(stu);
 
+/*
+    stu[i].name=row.stuname.toString();
+    stu[i].id= row.stuid.toString();
+    stu[i].xkcj= row.skcj.toString();
+    stu[i].shhd = row.shhd.toString();
+    stu[i].xsky = row.xsky.toString();
+    stu[i].jxj = row.jxj.toString();
+    value["stuname"]=stu[i].name;
+    value["stuid"]=stu[i].id;
+    value["xkcj"]=stu[i].xkcj;
+    value["xsky"]=stu[i].xsky;
+    value["shhd"]=stu[i].shhd;
+    value["jxj"]=stu[i].jxj;
+    var animal = new JsonObject();
+    var jsonValue = JSON.encode(stu[0]);
+*/
+
+    objectToJson(stu[0]).then((jsonStr) => print(jsonStr));
     String jsonValue = JSON.encode(value);
-    data[index] = stu;
+    data[index] = jsonValue;
     i++;
   });
+  String jsonData = JSON.encode(data);
+ // return jsonData;
+  return jsonStr;
+
+}
+
   Future<String> getDataFromDb1() async {
       var results = await pool.query('select teaname,teaid from tealogin');
       int i = 0;
@@ -124,7 +129,7 @@ Future<String> getDataFromDb() async {
         String index1 = "teaname" + i.toString();
         value1["teaname"]=row.teaname;
         value1["teaid"]=row.teaid;
-        data1[index] = JSON.encode(value1);
+        data1[index1] = JSON.encode(value1);
         i++;
       });
       String jsonData = JSON.encode(data1);
@@ -140,7 +145,8 @@ Future<shelf.Response> forstuid(shelf.Request request) async {
   //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok('${userName}'    );
 }
-  Future<shelf.Response> forteaid(shelf.Request request) async {
+
+Future<shelf.Response> forteaid(shelf.Request request) async {
       //从数据库获取数据
       String userName1 = await getDataFromDb1();
 
