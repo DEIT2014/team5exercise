@@ -43,18 +43,21 @@
     <section id="stu_login">
         <table id="stu_info" >
             <tr>
-                <td id="stu_name"></td>
+                <td style="font-weight:bold;" >欢迎您！</td>
                 <td></td>
-                <td id="stu_num"></td>
+                <td id="stu_name" style="font-weight:bold;" ></td>
+                <td><span>&nbsp;&nbsp;&nbsp;</span></td>
+                <td id="stu_num" style="font-weight:bold;" ></td>
             </tr>
         </table>
 
-        <table id="stu_show" >
+        <table id="stu_show" class="t1" border="1">
+            <tr></tr>
             <tr >
-                <td id="xkcj">学科成绩</td>
-                <td id="xsky">学术科研</td>
-                <td id="shhd">社会活动</td>
-                <td id="jxjlevel">奖学金等级</td>
+                <th id="xkcj">学科成绩</th>
+                <th id="xsky">学术科研</th>
+                <th id="shhd">社会活动</th>
+                <th id="jxjlevel">奖学金等级</th>
             </tr>
             <tr>
                 <td id="xkcjscore" align="center"></td>
@@ -62,25 +65,33 @@
                 <td id="shhdscore" align="center"></td>
                 <td id="jxjlevelscore" align="center"></td>
             </tr>
+            <table id="sum_and_chart" class="t1" >
             <tr >
-                <td id="zpscore"></td>
+                <td>总成绩：</td>
+                <td id="zpscore">0</td>
                 <td id="data_chart"></td>
             </tr>
         </table>
+            </table>
     </section>
     <section id="tea_login">
-        <table id="tea_info">
-            <tr>
+        <table id="tea_info" class="t1" >
+            <td>
+            <td style="font-weight:bold;" >欢迎您！</td>
                 <td id="tea_name">fghhdbgv</td>
                 <td id="tea_num">88888888</td>
             </tr>
         </table>
         <table id="tea_show" >
-            <tr><div id="search_stu_name">
-                <form action="http://localhost:4041"
+            <tr><div id="search_stu_name" align="left">
+                <form action="http://localhost:8080"
                       method="GET">
-
-
+                    <select name="q">
+                        <option value="0">haha</option>
+                        <option value="1">woo</option>
+                        <option value="2">zhang</option>
+                    </select>
+                    <input type="submit" value="搜索">
                 </form>
             </div>
             </tr>

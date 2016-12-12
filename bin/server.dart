@@ -77,7 +77,7 @@ print('Serving at http://${server.address.host}:${server.port}');
   }*/
 }
 
-Future<String> getDataFromDb() async {
+Future<String> getDataFromDb_stu() async {
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
   int i = 0;
@@ -116,13 +116,13 @@ Future<String> getDataFromDb() async {
     i++;
   });
   String jsonData = JSON.encode(data);
- // return jsonData;
-  return jsonStr;
+  return jsonData;
+ // return jsonStr;
 
 }
 
-  Future<String> getDataFromDb1() async {
-      var results = await pool.query('select teaname,teaid from tealogin');
+  Future<String> getDataFromDb_tea() async {
+      var results = await pool.query('select teaname,teaid from tea_infor');
       int i = 0;
       results.forEach((row) {
         //列出所有用户名
@@ -140,19 +140,19 @@ Future<String> getDataFromDb() async {
 
 Future<shelf.Response> forstuid(shelf.Request request) async {
   //从数据库获取数据
-  String userName = await getDataFromDb();
+  String userName_stu = await getDataFromDb_stu();
 
   //把这个post过来的数据有返回给客户端
-  return new shelf.Response.ok('${userName}'    );
+  return new shelf.Response.ok('${userName_stu}'    );
 }
 
 Future<shelf.Response> forteaid(shelf.Request request) async {
       //从数据库获取数据
-      String userName1 = await getDataFromDb1();
+      String userName_tea = await getDataFromDb_tea();
 
       //把这个post过来的数据有返回给客户端
       return new shelf.Response.ok(
-          ' ${userName1}'
+          ' ${userName_tea}'
       );
     }
 
