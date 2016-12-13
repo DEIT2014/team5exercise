@@ -109,6 +109,19 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   var jsonString = responseText;
+  List<student> stu=decode(stuListJson,type: const TypeHelper<List<student>>().type);
+  List stu_allDATA1= JSON.decode(jsonString);
+  querySelector('#stu_name').text=""+ stu_allDATA2["stuname"];
+  querySelector('#stu_num').text="学号："+ stu_allDATA2["stuid"].toString();
+  querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
+  querySelector("#xskyscore").text =  stu_allDATA2["xsky"];
+  querySelector("#shhdscore").text =  stu_allDATA2["shhd"];
+  querySelector("#jxjlevelscore").text =  stu_allDATA2["jxj"];
+  int zp;
+  zp=stu_allDATA2["xkcj"]*0.7+ stu_allDATA2["xsky"]*0.2+ stu_allDATA2["shhd"]*0.1;
+  querySelector("#zpscore").text =  zp.toString();
+
+ /* var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
   Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());
   querySelector('#stu_name').text=""+ stu_allDATA2["stuname"];
@@ -120,7 +133,7 @@ onDataLoaded_stu(responseText) {
   int zp;
   zp=stu_allDATA2["xkcj"]*0.7+ stu_allDATA2["xsky"]*0.2+ stu_allDATA2["shhd"]*0.1;
   querySelector("#zpscore").text =  zp.toString();
-
+*/
 }
 onDataLoaded_tea(responseText) {
 
@@ -129,6 +142,7 @@ onDataLoaded_tea(responseText) {
   Map tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
   querySelector('#tea_name').text=tea_allDATA2["teaname"];
   querySelector('#tea_id').text=tea_allDATA2["teaid"];
+
   /*querySelector('#stu_name').text="学生姓名："+ stu_allDATA2["name"];
   querySelector('#stu_num').text="学生学号："+ stu_allDATA2["id"].toString();
   querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
@@ -150,13 +164,3 @@ void shhd_chart_show(MouseEvent e) {
   //todo 取出数据库的数据
   // todo 根据数据库数据与Json文件数据计算所含元素比例并返回扇形图
 }
-
-///点击教师登陆按钮后的响应事件
-///教师主页面的数据
-void jsym(MouseEvent e) {
-//todo 访问数据库，获取所有学生数据，并格式化为json
-  displayTable = querySelector('#tea_namenum');
-
-  displayTable = querySelector('#teashow');
-
-}*/

@@ -10,7 +10,7 @@ import 'package:shelf_route/shelf_route.dart';
 import 'dart:convert' show JSON;
 import '../lib/stu_class.dart';
 import 'package:json_object/json_object.dart';
-
+import'package:jsonx/jsonx.dart';
 
 Map<String, String> data = new Map();
 Map<String, String> value = new Map();
@@ -80,44 +80,46 @@ print('Serving at http://${server.address.host}:${server.port}');
 Future<String> getDataFromDb_stu() async {
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-  int i = 0;
-  List<student> stu=new List(2);
-  String jsonStr;
+
+
+  var stuList=[];
   results.forEach((row) {
     //列出所有用户名
-    String index = "stuname" + i.toString();
- value["stuname"]=row.stuname;
-    value["stuid"]=row.stuid;
-    value["xkcj"]=row.xkcj;
-    value["xsky"]=row.xsky;
-    value["shhd"]=row.shhd;
-    value["jxj"]=row.jxj;
+    var stu=new student();
+    stu.name=row.stuname;
+    stu.id= row.stuid;
+    stu.xkcj= row.skcj;
+    stu.shhd = row.shhd;
+    stu.xsky = row.xsky;
+    stu.jxj = row.jxj;
+//从Object到JsonString的转换
+    String stuJson=encode(stu);
+    print(stuJson);
 
-/*
-    stu[i].name=row.stuname.toString();
-    stu[i].id= row.stuid.toString();
-    stu[i].xkcj= row.skcj.toString();
-    stu[i].shhd = row.shhd.toString();
-    stu[i].xsky = row.xsky.toString();
-    stu[i].jxj = row.jxj.toString();
-    value["stuname"]=stu[i].name;
-    value["stuid"]=stu[i].id;
-    value["xkcj"]=stu[i].xkcj;
-    value["xsky"]=stu[i].xsky;
-    value["shhd"]=stu[i].shhd;
-    value["jxj"]=stu[i].jxj;
-    var animal = new JsonObject();
-    var jsonValue = JSON.encode(stu[0]);
-*/
+    stuList.add(stu);
 
-    objectToJson(stu[0]).then((jsonStr) => print(jsonStr));
+////*/从JsonString到Object的转换
+//    String value='{"name":"lily","id"="1"}';
+//    student stu2=decode(value,type: student);
+//    String stuJson2=encode(stu2);
+//    print(stuJson2);
+//    //从object数组到JsonString的转换
+//    var stuList=[];
+//    stuList.add(stu);
+//    stuList.add(stu2);
+//    String stuListJson=encode(stuList);
+//    print(stuListJson);
+//    List<student> stu=decode(stuListJson,type: const TypeHelper<List<student>>().type);*/
+
+    /*
     String jsonValue = JSON.encode(value);
-    data[index] = jsonValue;
-    i++;
+    data[index] = stuJson;
+    i++;*/
   });
-  String jsonData = JSON.encode(data);
-  return jsonData;
- // return jsonStr;
+  String stuListJson=encode(stuList);
+  print(stuListJson);
+  return stuListJson;
+ // return sr;
 
 }
 
