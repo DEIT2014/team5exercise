@@ -20,6 +20,7 @@ dev_dependencies:
   shelf_cors:
   route_hierarchical: any
   json_object:
+  jsonx:
 
 transformers:
 - dart_to_js_script_rewriter
