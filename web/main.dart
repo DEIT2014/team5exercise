@@ -8,6 +8,8 @@ import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
 import '../lib/stu_class.dart';
+import 'package:jsonx/jsonx.dart';
+
 
 String note;
 TextInputElement TextInput;
@@ -109,18 +111,20 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   var jsonString = responseText;
-  List<student> stu=decode(stuListJson,type: const TypeHelper<List<student>>().type);
-  List stu_allDATA1= JSON.decode(jsonString);
-  querySelector('#stu_name').text=""+ stu_allDATA2["stuname"];
-  querySelector('#stu_num').text="学号："+ stu_allDATA2["stuid"].toString();
-  querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
-  querySelector("#xskyscore").text =  stu_allDATA2["xsky"];
-  querySelector("#shhdscore").text =  stu_allDATA2["shhd"];
-  querySelector("#jxjlevelscore").text =  stu_allDATA2["jxj"];
-  int zp;
-  zp=stu_allDATA2["xkcj"]*0.7+ stu_allDATA2["xsky"]*0.2+ stu_allDATA2["shhd"]*0.1;
-  querySelector("#zpscore").text =  zp.toString();
-
+  var stuList =decode(jsonString);
+  querySelector('#stu_name').text=jsonString;
+/*
+  List<student> stu = decode('[stuList[0],stuList[1],stuList[2]]', type: const TypeHelper<List<student>>().type);
+  querySelector('#stu_name').text=""+ stu[0].name;
+  querySelector('#stu_num').text="学号："+ stu[0].id.toString();
+  querySelector("#xkcjscore").text =  stu[0].xkcj.toString();
+  querySelector("#xskyscore").text =  stu[0].xsky.toString();
+  querySelector("#shhdscore").text =  stu[0].shhd.toString();
+  querySelector("#jxjlevelscore").text =  stu[0].jxj;
+  double zp;
+  zp=stu[0].xsky*0.7+ stu[0].xsky*0.2+ stu[0].shhd*0.1;
+  querySelector("#zpscore").text=  zp.toString();
+*/
  /* var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
   Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());

@@ -1,9 +1,9 @@
 class student{
   String name;
-  String id;
-  String xkcj;
-  String shhd;
-  String xsky;
+  int id;
+  double xkcj;
+  double shhd;
+  double xsky;
   String jxj;
   void study()
 {
