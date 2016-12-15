@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-12-12 14:37:05
+-- Generation Time: 2016-12-15 07:36:54
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `teainfo` (
 
 INSERT INTO `teainfo` (`teaname`, `teaid`) VALUES
 ('hu', 2001),
-('qun', 2001),
+('qun', 2002),
 ('wei', 2003),
 ('lu', 2004);
 
