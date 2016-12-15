@@ -76,21 +76,21 @@ print('Serving at http://${server.address.host}:${server.port}');
     return new Response.ok("Hello World");
   }*/
 }
+var stuList=[];
 
 Future<String> getDataFromDb_stu() async {
+
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-
-
-  var stuList=[];
   results.forEach((row) {
     //列出所有用户名
     var stu=new student();
+
     stu.name=row.stuname;
     stu.id= row.stuid;
-    stu.xkcj= row.skcj;
-    stu.shhd = row.shhd;
+    stu.xkcj= row.xkcj;
     stu.xsky = row.xsky;
+    stu.shhd = row.shhd;
     stu.jxj = row.jxj;
 //从Object到JsonString的转换
     String stuJson=encode(stu);
