@@ -111,8 +111,8 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   var jsonString = responseText;
-  var stuList =decode(jsonString);
-  querySelector('#stu_name').text=jsonString;
+  List<student> stu= docode(jsonString, type:const TypeHelper<List<student>>().type);
+  querySelector('#stu_name').text=stu.jsonString;
 /*
   List<student> stu = decode('[stuList[0],stuList[1],stuList[2]]', type: const TypeHelper<List<student>>().type);
   querySelector('#stu_name').text=""+ stu[0].name;
@@ -146,17 +146,20 @@ onDataLoaded_tea(responseText) {
   Map tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
   querySelector('#tea_name').text=tea_allDATA2["teaname"];
   querySelector('#tea_id').text=tea_allDATA2["teaid"];
+/*
 
-  /*querySelector('#stu_name').text="学生姓名："+ stu_allDATA2["name"];
-  querySelector('#stu_num').text="学生学号："+ stu_allDATA2["id"].toString();
-  querySelector("#xkcjscore").text =  stu_allDATA2["xkcj"];
-  querySelector("#xskyscore").text =  stu_allDATA2["xsky"];
-  querySelector("#shhdscore").text =  stu_allDATA2["shhd"];
-  querySelector("#jxjlevelscore").text =  stu_allDATA2["jxj"];*/
+  querySelector('#stuname1').text="学生姓名："+ stu_allDATA2["name"];
+  querySelector('#stunum1').text="学生学号："+ stu_allDATA2["id"].toString();
+  querySelector("#xkcjscore1").text =  stu_allDATA2["xkcj"];
+  querySelector("#xskyscore1").text =  stu_allDATA2["xsky"];
+  querySelector("#shhdscore1").text =  stu_allDATA2["shhd"];
+  querySelector("#jxjlevelscore1").text =  stu_allDATA2["jxj"];
 
+*/
 
 }
 /*
+
 /// 显示成绩分析扇形图
 void data_chart_show(MouseEvent e) {
   //todo 取出数据库的数据
@@ -168,3 +171,4 @@ void shhd_chart_show(MouseEvent e) {
   //todo 取出数据库的数据
   // todo 根据数据库数据与Json文件数据计算所含元素比例并返回扇形图
 }
+*/
