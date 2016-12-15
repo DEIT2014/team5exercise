@@ -17,6 +17,7 @@ Map<String, String> value = new Map();
 Map<String, String> data1 = new Map();
 Map<String, String> value1 = new Map();
 
+
 final pool = new ConnectionPool(host: "localhost",
     port: 3306,
     user: 'suzyfish',
@@ -158,13 +159,13 @@ Future<shelf.Response> forteaid(shelf.Request request) async {
       );
     }
 
-/*Future<shelf.Response> _echoRequest(shelf.Request request) async {
+Future<shelf.Response> _echoRequest(shelf.Request request) async {
   //接受post过来的数据
   String content = await request.readAsString();
   //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok(
       'server susscefullly get the post data from client is: "${content}');
 }
-///教师可根据学生的姓名学号，进行选择，从而知道学生的具体成绩信息*/
+///教师可根据学生的姓名学号，进行选择，从而知道学生的具体成绩信息
 
 
