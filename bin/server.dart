@@ -76,16 +76,16 @@ print('Serving at http://${server.address.host}:${server.port}');
     return new Response.ok("Hello World");
   }*/
 }
-var stuList=[];
 
+List<student> stuList=[];
 Future<String> getDataFromDb_stu() async {
 
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-  results.forEach((row) {
+
+   results.forEach((row) {
     //列出所有用户名
     var stu=new student();
-
     stu.name=row.stuname;
     stu.id= row.stuid;
     stu.xkcj= row.xkcj;
@@ -118,6 +118,7 @@ Future<String> getDataFromDb_stu() async {
   });
   String stuListJson=encode(stuList);
   print(stuListJson);
+
   return stuListJson;
  // return sr;
 

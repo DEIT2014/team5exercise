@@ -7,7 +7,7 @@ import 'dart:core'as core;
 import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
-import '../lib/stu_class.dart';
+import 'package:untitled2/stu_class.dart';
 import 'package:jsonx/jsonx.dart';
 
 
@@ -110,10 +110,13 @@ request.setRequestHeader("content-type";"");
 
 onDataLoaded_stu(responseText) {
 
-  var jsonString = responseText;
-  var stuList =decode(jsonString);
-  querySelector('#stu_name').text=jsonString;
-/*
+  String jsonString = responseText;
+  List<student> stu = decode(responseText, type: const TypeHelper<List<student>>().type);
+  //querySelector('#stu_name').text=jsonString;
+  querySelector('#stu_name').text=stu[0].toString();
+
+
+  /*
   List<student> stu = decode('[stuList[0],stuList[1],stuList[2]]', type: const TypeHelper<List<student>>().type);
   querySelector('#stu_name').text=""+ stu[0].name;
   querySelector('#stu_num').text="学号："+ stu[0].id.toString();
@@ -168,3 +171,4 @@ void shhd_chart_show(MouseEvent e) {
   //todo 取出数据库的数据
   // todo 根据数据库数据与Json文件数据计算所含元素比例并返回扇形图
 }
+*/

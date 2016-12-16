@@ -5,8 +5,5 @@ class student{
   double shhd;
   double xsky;
   String jxj;
-  void study()
-{
 
-  }
 }
