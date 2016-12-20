@@ -7,7 +7,7 @@ import 'dart:core'as core;
 import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
-import '../lib/stu_class.dart';
+import 'package:untitled2/stu_class.dart';
 import 'package:jsonx/jsonx.dart';
 
 
@@ -111,8 +111,8 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   var jsonString = responseText;
-  List<student> stu= docode(jsonString, type:const TypeHelper<List<student>>().type);
-  querySelector('#stu_name').text=stu.jsonString;
+  List<student> stu= docode(responseText, type:const TypeHelper<List<student>>().type);
+  querySelector('#stu_name').text=stu[0].name;
 /*
   List<student> stu = decode('[stuList[0],stuList[1],stuList[2]]', type: const TypeHelper<List<student>>().type);
   querySelector('#stu_name').text=""+ stu[0].name;
