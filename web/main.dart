@@ -111,7 +111,7 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   var jsonString = responseText;
-  List<student> stu= docode(jsonString, type:const TypeHelper<List<student>>().type);
+  List<student> stu= decode(jsonString, type:const TypeHelper<List<student>>().type);
   querySelector('#stu_name').text=stu.jsonString;
 /*
   List<student> stu = decode('[stuList[0],stuList[1],stuList[2]]', type: const TypeHelper<List<student>>().type);
