@@ -2,7 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 import 'dart:html';
 
-import 'dart:convert' show JSON;
+
 import 'dart:core'as core;
 import  'dart:convert';
 import 'dart:core';
@@ -35,6 +35,7 @@ void main() {
  querySelector('#link_tea').attributes['href'] = router.url('tea_login');
 
  router.listen();
+
 }
 
 void enter_stu_login(RouteEvent e) {
@@ -111,7 +112,11 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   String jsonString = responseText;
-  List<student> stu = decode(responseText, type: const TypeHelper<List<student>>().type);
+  //querySelector('#stu_name').text=jsonString;
+
+ // List stu=decode(jsonString);
+  //querySelector('#stu_name').text=stu.toString();
+  List<Student> stu=decode(responseText, type: const TypeHelper<List<Student>>().type);
   //querySelector('#stu_name').text=jsonString;
   querySelector('#stu_name').text=stu[0].toString();
 

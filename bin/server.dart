@@ -77,15 +77,15 @@ print('Serving at http://${server.address.host}:${server.port}');
   }*/
 }
 
-List<student> stuList=[];
+
 Future<String> getDataFromDb_stu() async {
 
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-
-   results.forEach((row) {
+  List<Student> stuList=[];
+   await results.forEach((row) {
     //列出所有用户名
-    var stu=new student();
+    Student stu=new Student();
     stu.name=row.stuname;
     stu.id= row.stuid;
     stu.xkcj= row.xkcj;
@@ -118,8 +118,19 @@ Future<String> getDataFromDb_stu() async {
   });
   String stuListJson=encode(stuList);
   print(stuListJson);
+  List<Student> stu2=decode(stuListJson,type: const TypeHelper<List<Student>>().type);
+  List<Student> stuList1=[];
+  Student stu1=new Student();
+  stu1.name="hh";
+  stu1.id=1000000;
+  stu1.xkcj=80.0;
+  stu1.shhd=50.0;
+  stu1.xsky=60.0;
+  stu1.jxj="third";
+  stuList1.add(stu1);
+  String stuListJson1=encode(stuList1);
 
-  return stuListJson;
+  return stuListJson1;
  // return sr;
 
 }
@@ -144,9 +155,9 @@ Future<String> getDataFromDb_stu() async {
 Future<shelf.Response> forstuid(shelf.Request request) async {
   //从数据库获取数据
   String userName_stu = await getDataFromDb_stu();
-
-  //把这个post过来的数据有返回给客户端
-  return new shelf.Response.ok('${userName_stu}'    );
+  List<Student> stu2=decode(userName_stu,type: const TypeHelper<List<Student>>().type);
+  //把这个数据有返回给客户端
+  return new shelf.Response.ok(userName_stu);
 }
 
 Future<shelf.Response> forteaid(shelf.Request request) async {
@@ -154,6 +165,7 @@ Future<shelf.Response> forteaid(shelf.Request request) async {
       String userName_tea = await getDataFromDb_tea();
 
       //把这个post过来的数据有返回给客户端
+      request.headers.putIfAbsent("content-type",()=>"application/json");
       return new shelf.Response.ok(
           ' ${userName_tea}'
       );

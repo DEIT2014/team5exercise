@@ -1,4 +1,4 @@
-class student{
+class Student{
   String name;
   int id;
   double xkcj;
