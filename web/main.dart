@@ -146,16 +146,16 @@ onDataLoaded_tea(responseText) {
   Map tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
   querySelector('#tea_name').text=tea_allDATA2["teaname"];
   querySelector('#tea_id').text=tea_allDATA2["teaid"];
+var i;
+  for(i=1;i<=30;i++) {
+    querySelector('#stuname1').text = "学生姓名：" + stu_allDATA2["name"];
+    querySelector('#stuid1').text = "学生学号：" + stu_allDATA2["id"].toString();
+    querySelector("#xkcjscore1").text = stu_allDATA2["xkcj"];
+    querySelector("#xskyscore1").text = stu_allDATA2["xsky"];
+    querySelector("#shhdscore1").text = stu_allDATA2["shhd"];
+    querySelector("#jxjlevelscore1").text = stu_allDATA2["jxj"];
+  }
 
-/*
-  querySelector('#stuname1').text="学生姓名："+ stu_allDATA2["name"];
-  querySelector('#stuid1').text="学生学号："+ stu_allDATA2["id"].toString();
-  querySelector("#xkcjscore1").text =  stu_allDATA2["xkcj"];
-  querySelector("#xskyscore1").text =  stu_allDATA2["xsky"];
-  querySelector("#shhdscore1").text =  stu_allDATA2["shhd"];
-  querySelector("#jxjlevelscore1").text =  stu_allDATA2["jxj"];
-
-*/
 
 }
 /*
