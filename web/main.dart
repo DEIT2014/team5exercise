@@ -8,7 +8,7 @@ import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
 import 'package:untitled2/stu_class.dart';
-import 'package:jsonx/jsonx.dart';
+import 'package:google_charts/google_charts.dart';
 
 
 String note;
@@ -38,7 +38,6 @@ void main() {
 }
 
 void enter_stu_login(RouteEvent e) {
-
   querySelector('#stu_login').classes.add('selected');
   querySelector('#tea_login').classes.remove('selected');
 }
@@ -111,20 +110,34 @@ request.setRequestHeader("content-type";"");
 onDataLoaded_stu(responseText) {
 
   var jsonString = responseText;
-  List<student> stu= docode(responseText, type:const TypeHelper<List<student>>().type);
-  querySelector('#stu_name').text=stu[0].name;
-/*
-  List<student> stu = decode('[stuList[0],stuList[1],stuList[2]]', type: const TypeHelper<List<student>>().type);
-  querySelector('#stu_name').text=""+ stu[0].name;
-  querySelector('#stu_num').text="学号："+ stu[0].id.toString();
-  querySelector("#xkcjscore").text =  stu[0].xkcj.toString();
-  querySelector("#xskyscore").text =  stu[0].xsky.toString();
-  querySelector("#shhdscore").text =  stu[0].shhd.toString();
-  querySelector("#jxjlevelscore").text =  stu[0].jxj;
+  //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
+  List stu=JSON.decode(jsonString);
+  Map stu_allDATA1= stu[0];
+  querySelector('#stu_name').text="姓名："+stu_allDATA1["name"];
+  querySelector('#stu_num').text="学号："+ stu_allDATA1["id"].toString();
+  querySelector("#xkcjscore").text =  stu_allDATA1["xkcj"].toString();
+  querySelector("#xskyscore").text =  stu_allDATA1["xsky"].toString();
+  querySelector("#shhdscore").text =  stu_allDATA1["shhd"].toString();
+  querySelector("#jxjlevelscore").text =  stu_allDATA1["jxj"];
   double zp;
-  zp=stu[0].xsky*0.7+ stu[0].xsky*0.2+ stu[0].shhd*0.1;
+  zp=stu_allDATA1["xkcj"]*0.7+ stu_allDATA1["xsky"]*0.2+stu_allDATA1["shhd"] *0.1;
   querySelector("#zpscore").text=  zp.toString();
-*/
+    PieChart.load().then((_) {
+      var data = arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Work', 11],
+        ['Eat', 2],
+        ['Commute', 2],
+        ['Watch TV', 2],
+        ['Sleep', 7]
+      ]);
+
+      var options = {'title': 'My Daily Activities'};
+
+      var chart = new PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+    });
  /* var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
   Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());

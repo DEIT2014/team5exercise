@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="main.dart" type="application/dart"></script>
     <script defer src="packages/browser/dart.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -57,7 +58,7 @@
                 <th id="xkcj">学科成绩</th>
                 <th id="xsky">学术科研</th>
                 <th id="shhd">社会活动</th>
-                <th>总成绩</th>
+                <th id="zp">总成绩</th>
 
 
             </tr>
@@ -72,12 +73,13 @@
 
             <table id="sum_and_chart" class="t1" >
             <tr >
-                <td id="jxjlevel">奖学金等级:</td>
+                <td id="jxjlevel" >奖学金等级:</td>
                 <td id="jxjlevelscore" align="center"></td>
-                <td id="data_chart"></td>
+
             </tr>
         </table>
-            </table>
+        </table>
+        <div id="piechart" style="width: 450px; height: 250px;"></div>
     </section>
     <section id="tea_login">
         <table id="tea_info" class="t1" >

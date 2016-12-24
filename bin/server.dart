@@ -9,7 +9,6 @@ import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 import 'package:shelf_route/shelf_route.dart';
 import 'dart:convert' show JSON;
 import '../lib/stu_class.dart';
-import 'package:json_object/json_object.dart';
 import'package:jsonx/jsonx.dart';
 
 Map<String, String> data = new Map();
@@ -77,13 +76,14 @@ print('Serving at http://${server.address.host}:${server.port}');
     return new Response.ok("Hello World");
   }*/
 }
-var stuList=[];
+
 
 Future<String> getDataFromDb_stu() async {
 
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-  results.forEach((row) {
+  List<student> stuList=[];
+  await results.forEach((row) {
     //列出所有用户名
     var stu=new student();
 
