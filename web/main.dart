@@ -185,3 +185,31 @@ void shhd_chart_show(MouseEvent e) {
   // todo 根据数据库数据与Json文件数据计算所含元素比例并返回扇形图
 }
 */
+var wordList;
+
+void main() {
+  querySelector('#getWords').onClick.listen(makeRequest);
+  wordList = querySelector('#wordList');
+}
+
+void makeRequest(Event e) {
+  var path = 'https://www.dartlang.org/f/portmanteaux.json';
+  var httpRequest = new HttpRequest();
+  httpRequest
+    ..open('GET', path)
+    ..onLoadEnd.listen((e) => requestComplete(httpRequest))
+    ..send('');
+}
+
+void requestComplete(HttpRequest request) {
+  if (request.status == 300) {
+    List<String> portmanteaux =
+    JSON.decode(request.responseText) as List<String>;
+    for (int i = 0; i < portmanteaux.length; i++) {
+      wordList.children.add(new LIElement()..text = portmanteaux[i]);
+    }
+  } else {
+    wordList.children.add(
+        new LIElement()..text = 'Request failed, status=${request.status}');
+  }
+}
