@@ -7,7 +7,6 @@ import 'dart:core'as core;
 import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
-import 'package:untitled2/stu_class.dart';
 import 'package:google_charts/google_charts.dart';
 
 
@@ -28,8 +27,8 @@ void main() {
  var router = new Router(useFragment: true);
 
  router.root
-  ..addRoute(name: 'stu_login', defaultRoute: true, path: '/student/{stuid_x}', enter: enter_stu_login)
-  ..addRoute(name: 'tea_login',  path: '/teacher/{teaid_x}', enter: enter_tea_login);
+  ..addRoute(name: 'stu_login',  path: '/student', enter: enter_stu_login)
+  ..addRoute(name: 'tea_login',  path: '/teacher', enter: enter_tea_login);
 
  querySelector('#link_stu').attributes['href'] = router.url('stu_login');
  querySelector('#link_tea').attributes['href'] = router.url('tea_login');
@@ -38,12 +37,38 @@ void main() {
 }
 
 void enter_stu_login(RouteEvent e) {
-  querySelector('#stu_login').classes.add('selected');
-  querySelector('#tea_login').classes.remove('selected');
+  //登录部分消失，显示学生登录后页面
+  document
+      .querySelector('#login')
+      .style
+      .display="none";
+  document
+     .querySelector('#stu_login')
+     .style
+     .display="block";
+  document
+      .querySelector('#tea_login')
+      .style
+      .display="none";
+  //querySelector('#stu_login').classes.add('selected');
+  //querySelector('#tea_login').classes.remove('selected');
 }
 void enter_tea_login(RouteEvent e) {
-  querySelector('#stu_login').classes.remove('selected');
-  querySelector('#tea_login').classes.add('selected');
+  //登录部分消失，显示教师登录后页面
+  document
+      .querySelector('#login')
+      .style
+      .display="none";
+  document
+      .querySelector('#tea_login')
+      .style
+      .display="block";
+  document
+      .querySelector('#stu_login')
+      .style
+      .display="none";
+ // querySelector('#stu_login').classes.remove('selected');
+  //querySelector('#tea_login').classes.add('selected');
 }
 /// 用来接受用户点击登录按钮以后的响应工作
 void enter_tea(MouseEvent e){
@@ -122,6 +147,8 @@ onDataLoaded_stu(responseText) {
   double zp;
   zp=stu_allDATA1["xkcj"]*0.7+ stu_allDATA1["xsky"]*0.2+stu_allDATA1["shhd"] *0.1;
   querySelector("#zpscore").text=  zp.toString();
+  //各项的饼状图，有点问题
+
     PieChart.load().then((_) {
       var data = arrayToDataTable([
         ['Task', 'Hours per Day'],
@@ -152,6 +179,7 @@ onDataLoaded_stu(responseText) {
   querySelector("#zpscore").text =  zp.toString();
 */
 }
+
 onDataLoaded_tea(responseText) {
 
   var jsonString = responseText;
@@ -159,8 +187,8 @@ onDataLoaded_tea(responseText) {
   Map tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
   querySelector('#tea_name').text=tea_allDATA2["teaname"];
   querySelector('#tea_id').text=tea_allDATA2["teaid"];
-var i;
-  for(i=1;i<=30;i++) {
+/*var i;
+   for(i=1;i<=30;i++) {
     querySelector('#stuname1').text = "学生姓名：" + stu_allDATA2["name"];
     querySelector('#stuid1').text = "学生学号：" + stu_allDATA2["id"].toString();
     querySelector("#xkcjscore1").text = stu_allDATA2["xkcj"];
@@ -169,7 +197,7 @@ var i;
     querySelector("#jxjlevelscore1").text = stu_allDATA2["jxj"];
   }
 
-
+*/
 }
 /*
 
