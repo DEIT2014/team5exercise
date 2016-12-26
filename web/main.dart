@@ -189,7 +189,7 @@ void makeRequest(Event e) {
 }
 
 void requestComplete(HttpRequest request) {
-  if (request.status == 200) {
+  if (request.status == 100) {
     List<String> portmanteaux =
     JSON.decode(request.responseText) as List<String>;
     for (int i = 0; i < portmanteaux.length; i++) {
