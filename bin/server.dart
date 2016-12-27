@@ -27,6 +27,7 @@ Future main(List<String> args)async {
    // myRouter.get('/', responseRoot);
    // myRouter.get('/login', forlogin);
     //myRouter.get('/no_login', forno_login);
+    myRouter.get('/search',forsearch);
     myRouter.get('/student/{stuid_x}', forstuid);
     myRouter.get('/teacher/{teaid_x}', forteaid);
     //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
@@ -167,5 +168,56 @@ Future<shelf.Response> _echoRequest(shelf.Request request) async {
       'server susscefullly get the post data from client is: "${content}');
 }
 ///教师可根据学生的姓名学号，进行选择，从而知道学生的具体成绩信息
-
+forsearch(request)
+{
+  try {//try是什么意思？
+    if (request.method == 'GET') {
+      handleSearch(request);//42
+    } else {
+      request.response
+        ..statusCode = HttpStatus.METHOD_NOT_ALLOWED
+        ..write('Unsupported request: ${request.method}.')
+        ..close();
+    }
+  } catch (e) {
+    print('Exception in handleRequest: $e');
+  }
+  print('Request handled.');
+}
+void handleSearch(HttpRequest request) {
+  var selectinfo = request.uri.queryParameters['q'];//应该是与HTML有关系
+  request.response.statusCode = HttpStatus.OK;
+  if (selectinfo == '1001hua') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+  if (selectinfo == '1002yu') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+  if (selectinfo == '1003qing') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+  if (selectinfo == '1004li') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+}
 
