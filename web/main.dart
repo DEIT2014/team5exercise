@@ -7,7 +7,7 @@ import 'dart:core'as core;
 import  'dart:convert';
 import 'dart:core';
 import 'package:route_hierarchical/client.dart';
-import 'package:google_charts/google_charts.dart';
+import 'package:modern_charts/modern_charts.dart';
 
 
 String note;
@@ -148,22 +148,36 @@ onDataLoaded_stu(responseText) {
   zp=stu_allDATA1["xkcj"]*0.7+ stu_allDATA1["xsky"]*0.2+stu_allDATA1["shhd"] *0.1;
   querySelector("#zpscore").text=  zp.toString();
   //各项的饼状图，有点问题
+    var changeDataButton = new ButtonElement()..text = 'Change data';
+    document.body.append(changeDataButton);
 
-    PieChart.load().then((_) {
-      var data = arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work', 11],
-        ['Eat', 2],
-        ['Commute', 2],
-        ['Watch TV', 2],
-        ['Sleep', 7]
-      ]);
+    var insertRemoveRowButton =
+    new ButtonElement()..text = 'Insert/remove data row';
+    document.body.append(insertRemoveRowButton);
 
-      var options = {'title': 'My Daily Activities'};
-
-      var chart = new PieChart(document.getElementById('piechart'));
-
-      chart.draw(data, options);
+    var container = createContainer();
+    var table = new DataTable(
+        [
+          ['Browser', 'Share'],
+          ['Chrome', 35],
+          ['Firefox', 20],
+          ['IE', 30],
+          ['Opera', 5],
+          ['Safari', 8],
+          ['Other', 2]]);
+    var chart = new PieChart(container);
+    chart.draw(table, {
+      'animation': {
+        'onEnd': () {
+          changeDataButton.disabled = false;
+          insertRemoveRowButton.disabled = false;
+        }
+      },
+      'series': {
+        'labels': {
+          'enabled': true
+        }
+      }
     });
  /* var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
@@ -213,6 +227,7 @@ void shhd_chart_show(MouseEvent e) {
   // todo 根据数据库数据与Json文件数据计算所含元素比例并返回扇形图
 }
 */
+/*
 var wordList;
 
 void main() {
@@ -240,4 +255,15 @@ void requestComplete(HttpRequest request) {
     wordList.children.add(
         new LIElement()..text = 'Request failed, status=${request.status}');
   }
+}
+*/
+
+Element createContainer() {
+  var e = new DivElement()
+    ..style.height = '400px'
+    ..style.width = '800px'
+    ..style.maxWidth = '100%'
+    ..style.marginBottom = '50px';
+  document.body.append(e);
+  return e;
 }

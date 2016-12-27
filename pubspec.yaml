@@ -21,7 +21,7 @@ dev_dependencies:
   route_hierarchical: any
   json_object:
   jsonx:
-  google_charts:
+  modern_charts:
 
 
 transformers:
