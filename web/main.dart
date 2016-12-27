@@ -112,7 +112,7 @@ onDataLoaded_stu(responseText) {
   var jsonString = responseText;
   //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
   List stu=JSON.decode(jsonString);
-  Map stu_allDATA1= stu[0];
+  var stu_allDATA1= stu[0];
   querySelector('#stu_name').text="姓名："+stu_allDATA1["name"];
   querySelector('#stu_num').text="学号："+ stu_allDATA1["id"].toString();
   querySelector("#xkcjscore").text =  stu_allDATA1["xkcj"].toString();
