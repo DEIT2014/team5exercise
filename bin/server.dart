@@ -215,7 +215,7 @@ void handleSearch(HttpRequest request) {
     request.response
       ..writeln('ok');
   } else {
-    request.response
+    request.response1
       ..writeln('not exit')
       ..close();//没猜对的话回复false
   }
