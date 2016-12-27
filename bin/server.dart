@@ -23,27 +23,28 @@ final pool = new ConnectionPool(host: "localhost",
     db: 'teamfive',
     max: 5); //与数据库相连
 Future main(List<String> args)async {
-    var myRouter = router();
-   // myRouter.get('/', responseRoot);
-   // myRouter.get('/login', forlogin);
-    //myRouter.get('/no_login', forno_login);
-    myRouter.get('/student/{stuid_x}', forstuid);
-    myRouter.get('/teacher/{teaid_x}', forteaid);
-    //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
-Map <String, String> corsHeader = new Map();
-corsHeader["Access-Control-Allow-Origin"] = "*";
-corsHeader["Access-Control-Allow-Methods"] = 'POST,GET,OPTIONS';
-corsHeader['Access-Control-Allow-Headers'] =
-'Origin, X-Requested-With, Content-Type, Accept';
-var routerHandler = myRouter.handler;
-var handler = const shelf.Pipeline()
-    .addMiddleware(shelf.logRequests())
-    .addMiddleware(
-    shelf_cors.createCorsHeadersMiddleware(corsHeaders: corsHeader))
-    .addHandler(routerHandler);
-io.serve(handler, '127.0.0.1', 8080).then((server) {
-print('Serving at http://${server.address.host}:${server.port}');
-});
+  var myRouter = router();
+  // myRouter.get('/', responseRoot);
+  // myRouter.get('/login', forlogin);
+  //myRouter.get('/no_login', forno_login);
+  myRouter.get('/search',forsearch);
+  myRouter.get('/student/{stuid_x}', forstuid);
+  myRouter.get('/teacher/{teaid_x}', forteaid);
+  //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
+  Map <String, String> corsHeader = new Map();
+  corsHeader["Access-Control-Allow-Origin"] = "*";
+  corsHeader["Access-Control-Allow-Methods"] = 'POST,GET,OPTIONS';
+  corsHeader['Access-Control-Allow-Headers'] =
+  'Origin, X-Requested-With, Content-Type, Accept';
+  var routerHandler = myRouter.handler;
+  var handler = const shelf.Pipeline()
+      .addMiddleware(shelf.logRequests())
+      .addMiddleware(
+      shelf_cors.createCorsHeadersMiddleware(corsHeaders: corsHeader))
+      .addHandler(routerHandler);
+  io.serve(handler, '127.0.0.1', 8080).then((server) {
+    print('Serving at http://${server.address.host}:${server.port}');
+  });
 /*
     forteasearch(request)
     {
@@ -120,24 +121,24 @@ Future<String> getDataFromDb_stu() async {
   String stuListJson=encode(stuList);
   print(stuListJson);
   return stuListJson;
- // return sr;
+  // return sr;
 
 }
 
-  Future<String> getDataFromDb_tea() async {
-      var results = await pool.query('select teaname,teaid from tea_infor');
-      int i = 0;
-      results.forEach((row) {
-        //列出所有用户名
-        String index1 = "teaname" + i.toString();
-        value1["teaname"]=row.teaname;
-        value1["teaid"]=row.teaid;
-        data1[index1] = JSON.encode(value1);
-        i++;
-      });
-      String jsonData = JSON.encode(data1);
-      return jsonData;
-    }
+Future<String> getDataFromDb_tea() async {
+  var results = await pool.query('select teaname,teaid from tea_infor');
+  int i = 0;
+  results.forEach((row) {
+    //列出所有用户名
+    String index1 = "teaname" + i.toString();
+    value1["teaname"]=row.teaname;
+    value1["teaid"]=row.teaid;
+    data1[index1] = JSON.encode(value1);
+    i++;
+  });
+  String jsonData = JSON.encode(data1);
+  return jsonData;
+}
 
 
 
@@ -150,14 +151,14 @@ Future<shelf.Response> forstuid(shelf.Request request) async {
 }
 
 Future<shelf.Response> forteaid(shelf.Request request) async {
-      //从数据库获取数据
-      String userName_tea = await getDataFromDb_tea();
+  //从数据库获取数据
+  String userName_tea = await getDataFromDb_tea();
 
-      //把这个post过来的数据有返回给客户端
-      return new shelf.Response.ok(
-          ' ${userName_tea}'
-      );
-    }
+  //把这个post过来的数据有返回给客户端
+  return new shelf.Response.ok(
+      ' ${userName_tea}'
+  );
+}
 
 Future<shelf.Response> _echoRequest(shelf.Request request) async {
   //接受post过来的数据
@@ -167,5 +168,56 @@ Future<shelf.Response> _echoRequest(shelf.Request request) async {
       'server susscefullly get the post data from client is: "${content}');
 }
 ///教师可根据学生的姓名学号，进行选择，从而知道学生的具体成绩信息
-
+forsearch(request)
+{
+  try {//try是什么意思？
+    if (request.method == 'GET') {
+      handleSearch(request);//42
+    } else {
+      request.response
+        ..statusCode = HttpStatus.METHOD_NOT_ALLOWED
+        ..write('Unsupported request: ${request.method}.')
+        ..close();
+    }
+  } catch (e) {
+    print('Exception in handleRequest: $e');
+  }
+  print('Request handled.');
+}
+void handleSearch(HttpRequest request) {
+  var selectinfo = request.uri.queryParameters['q'];//应该是与HTML有关系
+  request.response.statusCode = HttpStatus.OK;
+  if (selectinfo == '1001hua') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+  if (selectinfo == '1002yu') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+  if (selectinfo == '1003qing') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+  if (selectinfo == '1004li') {
+    request.response
+      ..writeln('ok');
+  } else {
+    request.response
+      ..writeln('not exit')
+      ..close();//没猜对的话回复false
+  }
+}
 
