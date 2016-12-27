@@ -51,8 +51,10 @@ void enter_tea(MouseEvent e){
   //todo 若对比成功，隐藏登录界面，显示教师或者学生界面（根据相应的标志值判断）
 
 //和学生一样
-  var url = "$host/teacher/{teaid_x}"; // 链接到学生主页面
+  var url = "$host/teacher/{teaid_x}"; // 链接到教师主页面
   var request = HttpRequest.getString(url).then(onDataLoaded_tea);
+  var url1 = "$host/student/{stuid_x}"; // 链接到学生主页面
+  var request1 = HttpRequest.getString(url).then(onDataLoaded_tea_stu);
 }
 
 
@@ -155,12 +157,20 @@ onDataLoaded_stu(responseText) {
 onDataLoaded_tea(responseText) {
 
   var jsonString = responseText;
-  Map tea_allDATA1= JSON.decode(jsonString);
-  Map tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
+  var tea_allDATA1= JSON.decode(jsonString);
+  var tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
   querySelector('#tea_name').text=tea_allDATA2["teaname"];
   querySelector('#tea_id').text=tea_allDATA2["teaid"];
-var i;
-  for(i=1;i<=30;i++) {
+
+  }
+
+onDataLoaded_tea_stu(responseText) {
+  var jsonString = responseText;
+  //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
+  List stu = JSON.decode(jsonString);
+  var stu_allDATA2 = stu[0];
+  var i;
+  for (i = 1; i <= 30; i++) {
     querySelector('#stuname1').text = "学生姓名：" + stu_allDATA2["name"];
     querySelector('#stuid1').text = "学生学号：" + stu_allDATA2["id"].toString();
     querySelector("#xkcjscore1").text = stu_allDATA2["xkcj"];
@@ -168,8 +178,6 @@ var i;
     querySelector("#shhdscore1").text = stu_allDATA2["shhd"];
     querySelector("#jxjlevelscore1").text = stu_allDATA2["jxj"];
   }
-
-
 }
 /*
 
