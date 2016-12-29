@@ -102,9 +102,9 @@ void enter_tea(MouseEvent e){
   //todo 若对比成功，隐藏登录界面，显示教师或者学生界面（根据相应的标志值判断）
 
 //和学生一样
-  var url = "$host/teacher"; // 链接到学生主页面
+  var url = "$host/teacher/{teaid_x}"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded_tea);
-  var url1 = "$host/student"; // 链接到学生主页面
+  var url1 = "$host/student/{stuid_x}"; // 链接到学生主页面
   var request1= HttpRequest.getString(url).then(onDataLoaded_tea_stu);
 }
 
@@ -114,7 +114,7 @@ void enter_tea(MouseEvent e){
 void enter_stu(MouseEvent e) {
 //todo 访问数据库，获取所有学生数据，并格式化为json
   print("成功登陆");//调试
-  var url = "$host/student"; // 链接到学生主页面
+  var url = "$host/student/{stuid_x}"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded_stu);
 /*
 example:
