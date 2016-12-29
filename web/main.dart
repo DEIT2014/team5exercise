@@ -24,6 +24,10 @@ void main() {
   querySelector('#link_stu').onClick.listen(enter_stu);
   querySelector('#link_tea').onClick.listen(enter_tea);
 
+
+
+
+
  var router = new Router(useFragment: true);
 
  router.root
@@ -52,6 +56,28 @@ void enter_stu_login(RouteEvent e) {
       .display="none";
   //querySelector('#stu_login').classes.add('selected');
   //querySelector('#tea_login').classes.remove('selected');
+
+  var container = querySelector('#piechart');
+  var table = new DataTable(
+      [
+        ['评分项目', 'Share'],
+        ['学科成绩', 35],
+        ['学术科研', 20],
+        ['社会活动', 30]
+      ]);
+  var chart = new PieChart(container);
+  chart.draw(table, {
+    'animation': {
+      'onEnd': () {
+
+      }
+    },
+    'series': {
+      'labels': {
+        'enabled': true
+      }
+    }
+  });
 }
 void enter_tea_login(RouteEvent e) {
   //登录部分消失，显示教师登录后页面
@@ -76,9 +102,9 @@ void enter_tea(MouseEvent e){
   //todo 若对比成功，隐藏登录界面，显示教师或者学生界面（根据相应的标志值判断）
 
 //和学生一样
-  var url = "$host/teacher/{teaid_x}"; // 链接到学生主页面
+  var url = "$host/teacher"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded_tea);
-  var url1 = "$host/student/{stuid_x}"; // 链接到学生主页面
+  var url1 = "$host/student"; // 链接到学生主页面
   var request1= HttpRequest.getString(url).then(onDataLoaded_tea_stu);
 }
 
@@ -88,7 +114,7 @@ void enter_tea(MouseEvent e){
 void enter_stu(MouseEvent e) {
 //todo 访问数据库，获取所有学生数据，并格式化为json
   print("成功登陆");//调试
-  var url = "$host/student/{stuid_x}"; // 链接到学生主页面
+  var url = "$host/student"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded_stu);
 /*
 example:
@@ -150,37 +176,28 @@ onDataLoaded_stu(responseText) {
   zp=stu_allDATA1["xkcj"]*0.7+ stu_allDATA1["xsky"]*0.2+stu_allDATA1["shhd"] *0.1;
   querySelector("#zpscore").text=  zp.toString();
   //各项的饼状图，有点问题
-    var changeDataButton = new ButtonElement()..text = 'Change data';
-    document.body.append(changeDataButton);
 
-    var insertRemoveRowButton =
-    new ButtonElement()..text = 'Insert/remove data row';
-    document.body.append(insertRemoveRowButton);
+  var container = querySelector('#piechart');
+  var table = new DataTable(
+      [
+        ['评分项目', 'Share'],
+        ['学科成绩', stu_allDATA1["xkcj"]],
+        ['学术科研', stu_allDATA1["xsky"]],
+        ['社会活动', stu_allDATA1["shhd"]]
+      ]);
+  var chart = new PieChart(container);
+  chart.draw(table, {
+    'animation': {
+      'onEnd': () {
 
-    var container = createContainer();
-    var table = new DataTable(
-        [
-          ['Browser', 'Share'],
-          ['Chrome', 35],
-          ['Firefox', 20],
-          ['IE', 30],
-          ['Opera', 5],
-          ['Safari', 8],
-          ['Other', 2]]);
-    var chart = new PieChart(container);
-    chart.draw(table, {
-      'animation': {
-        'onEnd': () {
-          changeDataButton.disabled = false;
-          insertRemoveRowButton.disabled = false;
-        }
-      },
-      'series': {
-        'labels': {
-          'enabled': true
-        }
       }
-    });
+    },
+    'series': {
+      'labels': {
+        'enabled': true
+      }
+    }
+  });
  /* var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
   Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());
@@ -250,8 +267,8 @@ void shhd_chart_show(MouseEvent e) {
 
 Element createContainer() {
   var e = new DivElement()
-    ..style.height = '400px'
-    ..style.width = '800px'
+    ..style.height = '200px'
+    ..style.width = '400px'
     ..style.maxWidth = '100%'
     ..style.marginBottom = '50px';
   document.body.append(e);

@@ -15,7 +15,7 @@ table.t1 {
 table.t1 th{
     background: #7cb8e2;
     color: #fff;
-    padding:10px 4px;
+    padding:10px 20px 10px 20px;
     text-align: center;
 
 }
@@ -37,7 +37,12 @@ body  {
     background-image: url(beijing1.jpg);
     background-repeat: no-repeat;
     background-position: top;
+    padding-bottom:50px;
 
+
+}
+#piechart{
+    margin-left: 600px;
 }
 
 h1 {
