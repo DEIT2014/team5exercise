@@ -27,7 +27,7 @@ Future main(List<String> args)async {
   // myRouter.get('/', responseRoot);
   // myRouter.get('/login', forlogin);
   //myRouter.get('/no_login', forno_login);
-  myRouter.get('/search',forsearch);
+ /* myRouter.get('/search',forsearch);*/
   myRouter.get('/student/{stuid_x}', forstuid);
   myRouter.get('/teacher/{teaid_x}', forteaid);
   //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
@@ -159,7 +159,7 @@ Future<shelf.Response> forteaid(shelf.Request request) async {
       ' ${userName_tea}'
   );
 }
-
+/*
 Future<shelf.Response> _echoRequest(shelf.Request request) async {
   //接受post过来的数据
   String content = await request.readAsString();
@@ -168,8 +168,7 @@ Future<shelf.Response> _echoRequest(shelf.Request request) async {
       'server susscefullly get the post data from client is: "${content}');
 }
 ///教师可根据学生的姓名学号，进行选择，从而知道学生的具体成绩信息
-forsearch(request)
-{
+void searchRequest(HttpRequest request){
   try {//try是什么意思？
     if (request.method == 'GET') {
       handleSearch(request);//42
@@ -193,7 +192,7 @@ void handleSearch(HttpRequest request) {
   } else {
     request.response
       ..writeln('not exit')
-      ..close();//没猜对的话回复false
+      ..close();//该同学不存在的话显示not exit
   }
   if (selectinfo == '1002yu') {
     request.response
@@ -201,7 +200,7 @@ void handleSearch(HttpRequest request) {
   } else {
     request.response
       ..writeln('not exit')
-      ..close();//没猜对的话回复false
+      ..close();//该同学不存在的话显示not exit
   }
   if (selectinfo == '1003qing') {
     request.response
@@ -209,7 +208,7 @@ void handleSearch(HttpRequest request) {
   } else {
     request.response
       ..writeln('not exit')
-      ..close();//没猜对的话回复false
+      ..close();//该同学不存在的话显示not exit
   }
   if (selectinfo == '1004li') {
     request.response
@@ -217,7 +216,7 @@ void handleSearch(HttpRequest request) {
   } else {
     request.response
       ..writeln('not exit')
-      ..close();//没猜对的话回复false
+      ..close();//该同学不存在的话显示not exit
   }
 }
-
+*/
