@@ -237,10 +237,10 @@ onDataLoaded_tea_stu(responseText) {
   var jsonString = responseText;
   //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
   List stu=JSON.decode(jsonString);
-  for (int i = 1; i <= 4; i++) {//i=学生数量，循环输出。但是在html界面是写完了全部的id，不知道有什么方法可以循环。
+  for (int i = 0; i <= 2; i++) {//i=学生数量-1，循环输出。但是在html界面是写完了全部的id，不知道有什么方法可以循环。
     var stu_allDATA2= stu[i];
-    querySelector('#stuname$i').text = "学生姓名：" + stu_allDATA2["name"];
-    querySelector('#stuid$i').text = "学生学号：" + stu_allDATA2["id"].toString();
+    querySelector('#stuname$i').text = stu_allDATA2["name"];
+    querySelector('#stuid$i').text = stu_allDATA2["id"].toString();
     querySelector("#xkcjscore$i").text = stu_allDATA2["xkcj"];
     querySelector("#xskyscore$i").text = stu_allDATA2["xsky"];
     querySelector("#shhdscore$i").text = stu_allDATA2["shhd"];
