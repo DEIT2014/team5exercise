@@ -57,27 +57,6 @@ void enter_stu_login(RouteEvent e) {
   //querySelector('#stu_login').classes.add('selected');
   //querySelector('#tea_login').classes.remove('selected');
 
-  var container = querySelector('#piechart');
-  var table = new DataTable(
-      [
-        ['评分项目', 'Share'],
-        ['学科成绩', 35],
-        ['学术科研', 20],
-        ['社会活动', 30]
-      ]);
-  var chart = new PieChart(container);
-  chart.draw(table, {
-    'animation': {
-      'onEnd': () {
-
-      }
-    },
-    'series': {
-      'labels': {
-        'enabled': true
-      }
-    }
-  });
 }
 void enter_tea_login(RouteEvent e) {
   //登录部分消失，显示教师登录后页面
@@ -165,6 +144,7 @@ onDataLoaded_stu(responseText) {
   var jsonString = responseText;
   //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
   List stu=JSON.decode(jsonString);
+  //第一位学生成绩信息
   var stu_allDATA1= stu[0];
   querySelector('#stu_name').text="姓名："+stu_allDATA1["name"];
   querySelector('#stu_num').text="学号："+ stu_allDATA1["id"].toString();
@@ -175,7 +155,7 @@ onDataLoaded_stu(responseText) {
   double zp;
   zp=stu_allDATA1["xkcj"]*0.7+ stu_allDATA1["xsky"]*0.2+stu_allDATA1["shhd"] *0.1;
   querySelector("#zpscore").text=  zp.toString();
-  //各项的饼状图，有点问题
+  //各项的饼状图ok
 
   var container = querySelector('#piechart');
   var table = new DataTable(

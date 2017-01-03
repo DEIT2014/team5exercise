@@ -27,7 +27,7 @@ Future main(List<String> args)async {
   // myRouter.get('/', responseRoot);
   // myRouter.get('/login', forlogin);
   //myRouter.get('/no_login', forno_login);
- /* myRouter.get('/search',forsearch);*/
+  myRouter.get('/search',forteasearch);
   myRouter.get('/student/{stuid_x}', forstuid);
   myRouter.get('/teacher/{teaid_x}', forteaid);
   //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
@@ -45,12 +45,12 @@ Future main(List<String> args)async {
   io.serve(handler, '127.0.0.1', 8080).then((server) {
     print('Serving at http://${server.address.host}:${server.port}');
   });
-/*
+
     forteasearch(request)
     {
       return new Response.ok();
     }
-    ///教师输入自己的工号进行登录操作
+  /*  ///教师输入自己的工号进行登录操作
     forteaid(request)
     {
       return new Response.ok();
@@ -159,7 +159,7 @@ Future<shelf.Response> forteaid(shelf.Request request) async {
       ' ${userName_tea}'
   );
 }
-/*
+
 Future<shelf.Response> _echoRequest(shelf.Request request) async {
   //接受post过来的数据
   String content = await request.readAsString();
@@ -219,4 +219,4 @@ void handleSearch(HttpRequest request) {
       ..close();//该同学不存在的话显示not exit
   }
 }
-*/
+
