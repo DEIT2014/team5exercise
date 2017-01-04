@@ -23,6 +23,7 @@ void main() {
   //点击学生登录和教师登录链接
   querySelector('#link_stu').onClick.listen(enter_stu);
   querySelector('#link_tea').onClick.listen(enter_tea);
+  querySelector('#search').onClick.listen(stu_search);
 
 
 
@@ -242,7 +243,14 @@ void shhd_chart_show(MouseEvent e) {
   // todo 根据数据库数据与Json文件数据计算所含元素比例并返回扇形图
 }
 */
-
+stu_search(MouseEvent e){
+  var url = "$host/search"; // 链接到学生主页面
+  var request = HttpRequest.getString(url).then(onDataLoaded_search);
+}
+onDataLoaded_search(responseText){
+  var jsonString = responseText;
+  querySelector('#stu_search').text=responseText;
+}
 
 Element createContainer() {
   var e = new DivElement()
