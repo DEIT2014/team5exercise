@@ -27,7 +27,7 @@ Future main(List<String> args)async {
   // myRouter.get('/', responseRoot);
   // myRouter.get('/login', forlogin);
   //myRouter.get('/no_login', forno_login);
-  myRouter.get('/search',forteasearch);
+  myRouter.get('/search',handleSearch);
   myRouter.get('/student/{stuid_x}', forstuid);
   myRouter.get('/teacher/{teaid_x}', forteaid);
   //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
@@ -46,10 +46,7 @@ Future main(List<String> args)async {
     print('Serving at http://${server.address.host}:${server.port}');
   });
 
-    forteasearch(request)
-    {
-      return new Response.ok();
-    }
+
   /*  ///教师输入自己的工号进行登录操作
     forteaid(request)
     {
@@ -168,55 +165,35 @@ Future<shelf.Response> _echoRequest(shelf.Request request) async {
       'server susscefullly get the post data from client is: "${content}');
 }
 ///教师可根据学生的姓名学号，进行选择，从而知道学生的具体成绩信息
-void searchRequest(HttpRequest request){
-  try {//try是什么意思？
-    if (request.method == 'GET') {
-      handleSearch(request);//42
-    } else {
-      request.response
-        ..statusCode = HttpStatus.METHOD_NOT_ALLOWED
-        ..write('Unsupported request: ${request.method}.')
-        ..close();
-    }
-  } catch (e) {
-    print('Exception in handleRequest: $e');
+/*
+Future<shelf.Response> handleSearch(shelf.Request request)async {
+  var selectinfo = request.url.queryParameters['q'];//应该是与HTML有关系
+    if (selectinfo == 0.toString()) {
+      String userName_stu = await getDataFromDb_stu();
+      String userName_stux =userName_stu[0];
+      return new shelf.Response.ok( ' ${userName_stux}');
+      request.context        ..writeln('搜索1004li成功');
+  }*/
+Future<shelf.Response> handleSearch(shelf.Request request) async {
+  var search = request.url.queryParameters['q'];//应该是与HTML有关系
+  if (search == 0.toString()) {
+    return new shelf.Response.ok('hahaflualulualulualu!');
+  }/*
+  if (selectinfo ==  1.toString()) {
+String userName_stu = await getDataFromDb_stu();
+String userName_stux =userName_stu[1];
+return new shelf.Response.ok( ' ${userName_stux}');
   }
-  print('Request handled.');
-}
-void handleSearch(HttpRequest request) {
-  var selectinfo = request.uri.queryParameters['q'];//应该是与HTML有关系
-  request.response.statusCode = HttpStatus.OK;
-  if (selectinfo == '1001hua') {
-    request.response
-      ..writeln('ok');
-  } else {
-    request.response
-      ..writeln('not exit')
-      ..close();//该同学不存在的话显示not exit
+
+  if (selectinfo ==  2.toString()) {
+String userName_stu = await getDataFromDb_stu();
+String userName_stux =userName_stu[2];
+return new shelf.Response.ok( ' ${userName_stux}');
   }
-  if (selectinfo == '1002yu') {
-    request.response
-      ..writeln('ok');
-  } else {
-    request.response
-      ..writeln('not exit')
-      ..close();//该同学不存在的话显示not exit
-  }
-  if (selectinfo == '1003qing') {
-    request.response
-      ..writeln('ok');
-  } else {
-    request.response
-      ..writeln('not exit')
-      ..close();//该同学不存在的话显示not exit
-  }
-  if (selectinfo == '1004li') {
-    request.response
-      ..writeln('ok');
-  } else {
-    request.response
-      ..writeln('not exit')
-      ..close();//该同学不存在的话显示not exit
-  }
+  if (selectinfo ==  3.toString()) {
+String userName_stu = await getDataFromDb_stu();
+String userName_stux =userName_stu[3];
+return new shelf.Response.ok( ' ${userName_stux}');
+  }*/
 }
 
