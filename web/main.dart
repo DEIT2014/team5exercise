@@ -14,6 +14,9 @@ String note;
 TextInputElement TextInput;
 ParagraphElement displayNote;
 TableElement displayTable;
+var container = querySelector('#piechart');
+var chart = new PieChart(container);
+
 var host = 'http://localhost:8080';
 
 void main() {
@@ -28,15 +31,17 @@ void main() {
 
 
 
-
  var router = new Router(useFragment: true);
 
  router.root
   ..addRoute(name: 'stu_login',  path: '/student', enter: enter_stu_login)
-  ..addRoute(name: 'tea_login',  path: '/teacher', enter: enter_tea_login);
+  ..addRoute(name: 'tea_login',  path: '/teacher', enter: enter_tea_login)
+  ..addRoute(name: 'back',  path: '', enter: back_home);
 
- querySelector('#link_stu').attributes['href'] = router.url('stu_login');
- querySelector('#link_tea').attributes['href'] = router.url('tea_login');
+
+querySelector('#link_stu').attributes['href'] = router.url('stu_login');
+  querySelector('#link_tea').attributes['href'] = router.url('tea_login');
+querySelector('#back').attributes['href'] = router.url('back');//点击回到登录即首页面，只在学生和教师界面显示
 
  router.listen();
 }
@@ -55,6 +60,10 @@ void enter_stu_login(RouteEvent e) {
       .querySelector('#tea_login')
       .style
       .display="none";
+  document
+      .querySelector('#back')
+      .style
+      .display="block";
   //querySelector('#stu_login').classes.add('selected');
   //querySelector('#tea_login').classes.remove('selected');
 
@@ -73,7 +82,32 @@ void enter_tea_login(RouteEvent e) {
       .querySelector('#stu_login')
       .style
       .display="none";
+  document
+      .querySelector('#back')
+      .style
+      .display="block";
  // querySelector('#stu_login').classes.remove('selected');
+  //querySelector('#tea_login').classes.add('selected');
+}
+void back_home(RouteEvent e) {
+  //学生或教师页面消失，登录部分显现，“箭头”只在学生和教师界面显示
+   document
+      .querySelector('#login')
+      .style
+      .display="block";
+  document
+      .querySelector('#tea_login')
+      .style
+      .display="none";
+  document
+      .querySelector('#stu_login')
+      .style
+      .display="none";
+   document
+       .querySelector('#back')
+       .style
+       .display="none";
+  // querySelector('#stu_login').classes.remove('selected');
   //querySelector('#tea_login').classes.add('selected');
 }
 /// 用来接受用户点击登录按钮以后的响应工作
@@ -158,7 +192,6 @@ onDataLoaded_stu(responseText) {
   querySelector("#zpscore").text=  zp.toString();
   //各项的饼状图ok
 
-  var container = querySelector('#piechart');
   var table = new DataTable(
       [
         ['评分项目', 'Share'],
@@ -166,7 +199,6 @@ onDataLoaded_stu(responseText) {
         ['学术科研', stu_allDATA1["xsky"]],
         ['社会活动', stu_allDATA1["shhd"]]
       ]);
-  var chart = new PieChart(container);
   chart.draw(table, {
     'animation': {
       'onEnd': () {
@@ -251,7 +283,7 @@ onDataLoaded_search(responseText){
   var jsonString = responseText;
   querySelector('#stu_search').text=responseText;
 }
-
+/*
 Element createContainer() {
   var e = new DivElement()
     ..style.height = '200px'
@@ -260,4 +292,4 @@ Element createContainer() {
     ..style.marginBottom = '50px';
   document.body.append(e);
   return e;
-}
+}*/
