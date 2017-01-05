@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-01-05 03:43:23
+-- Generation Time: 2017-01-05 04:38:29
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -115,19 +115,23 @@ INSERT INTO `tealogin` (`teaid`, `teapassword`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `xkcj_show` (
-  `subject` varchar(20) DEFAULT NULL,
-  `score` float DEFAULT NULL
+  `stuname` varchar(20) DEFAULT NULL,
+  `stuid` int(20) DEFAULT NULL,
+  `math` float DEFAULT NULL,
+  `deit` float DEFAULT NULL,
+  `phy` float DEFAULT NULL,
+  `english` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `xkcj_show`
 --
 
-INSERT INTO `xkcj_show` (`subject`, `score`) VALUES
-('deit', 80),
-('math', 90),
-('english', 95),
-('phy', 78);
+INSERT INTO `xkcj_show` (`stuname`, `stuid`, `math`, `deit`, `phy`, `english`) VALUES
+('hua', 1001, 90, 90, 100, 100),
+('yu', 1002, 80, 76, 83, 77),
+('qing', 1003, 29, 40, 33, 27),
+('li', 1004, 78, 82, 79, 83);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
