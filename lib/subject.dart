@@ -1,6 +1,8 @@
 class subject{
+  String name;
+  int id;
   double math;
-  double engllish;
+  double english;
   double deit;
   double phy;
 
