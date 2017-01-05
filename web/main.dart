@@ -27,8 +27,7 @@ void main() {
   querySelector('#link_stu').onClick.listen(enter_stu);
   querySelector('#link_tea').onClick.listen(enter_tea);
   querySelector('#search').onClick.listen(stu_search);
-
-
+  querySelector('#xkcj').onClick.listen(stu_xkcj_detail);
 
 
  var router = new Router(useFragment: true);
@@ -36,14 +35,17 @@ void main() {
  router.root
   ..addRoute(name: 'stu_login',  path: '/student', enter: enter_stu_login)
   ..addRoute(name: 'tea_login',  path: '/teacher', enter: enter_tea_login)
-  ..addRoute(name: 'back',  path: '', enter: back_home);
+  ..addRoute(name: 'back',  path: '', enter: back_home)
+  ..addRoute(name: 'xkcj_detail',  path: '/student/xkcj', enter: xkcj_detail);
 
 
 querySelector('#link_stu').attributes['href'] = router.url('stu_login');
   querySelector('#link_tea').attributes['href'] = router.url('tea_login');
 querySelector('#back').attributes['href'] = router.url('back');//点击回到登录即首页面，只在学生和教师界面显示
+  querySelector('#xkcj').attributes['href'] = router.url('xkcj_detail');
 
- router.listen();
+
+  router.listen();
 }
 
 void enter_stu_login(RouteEvent e) {
@@ -107,8 +109,36 @@ void back_home(RouteEvent e) {
        .querySelector('#back')
        .style
        .display="none";
+   document
+       .querySelector('#xkcj_detail')
+       .style
+       .display="none";
   // querySelector('#stu_login').classes.remove('selected');
   //querySelector('#tea_login').classes.add('selected');
+}
+
+void xkcj_detail(RouteEvent e) {
+  document
+      .querySelector('#login')
+      .style
+      .display="none";
+  document
+      .querySelector('#tea_login')
+      .style
+      .display="none";
+  document
+      .querySelector('#stu_login')
+      .style
+      .display="none";
+  document
+      .querySelector('#back')
+      .style
+      .display="block";
+  document
+      .querySelector('#xkcj_detail')
+      .style
+      .display="block";
+
 }
 /// 用来接受用户点击登录按钮以后的响应工作
 void enter_tea(MouseEvent e){
@@ -178,6 +208,13 @@ request.setRequestHeader("content-type";"");
   displayNote=querySelector('#xsky_spscore');//显示总评分数值
 */
 }
+void stu_xkcj_detail(MouseEvent e) {
+//todo 访问数据库，获取所有学生数据，并格式化为json
+print("成功登陆");//调试
+var url = "$host/student/{stuid_x}"; // 链接到学生主页面
+var request = HttpRequest.getString(url).then(onDataLoaded_xkcj_detail);
+}
+
 
 onDataLoaded_stu(responseText) {
 
@@ -185,7 +222,7 @@ onDataLoaded_stu(responseText) {
   //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
   List stu=JSON.decode(jsonString);
   //第一位学生成绩信息
-  var stu_allDATA1= stu[0];
+  var stu_allDATA1= stu[1];
   querySelector('#stu_name').text="姓名："+stu_allDATA1["name"];
   querySelector('#stu_num').text="学号："+ stu_allDATA1["id"].toString();
   querySelector("#xkcjscore").text =  stu_allDATA1["xkcj"].toString();
@@ -280,6 +317,19 @@ onDataLoaded_tea_stu(responseText) {
   }
 }
 
+onDataLoaded_xkcj_detail(responseText){
+  var jsonString_xkcj = responseText;
+  //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
+  List xkcj=JSON.decode(jsonString_xkcj);
+  //第一位学生成绩信息
+  var stu_allDATA1= xkcj[0];
+  querySelector('#stu_name').text="姓名："+stu_allDATA1["name"];
+  querySelector('#stu_num').text="学号："+ stu_allDATA1["id"].toString();
+  querySelector("#deit_score").text =  stu_allDATA1["deit"].toString();
+  querySelector("#math_score").text =  stu_allDATA1["math"].toString();
+  querySelector("#english_score").text =  stu_allDATA1["english"].toString();
+  querySelector("#phy_score").text =  stu_allDATA1["phy"];
+}
 /*
 
 /// 显示成绩分析扇形图
