@@ -132,7 +132,7 @@ Future<String> getDataFromDb_stu() async {
 }
 
 Future<String> getDataFromDb_tea() async {
-  var results = await pool.query('select teaname,teaid from tea_info');
+  var results = await pool.query('select teaname,teaid from teainfo');
   int i = 0;
   results.forEach((row) {
     //列出所有用户名

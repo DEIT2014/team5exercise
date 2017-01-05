@@ -78,17 +78,36 @@ section.selected {
     display: block;
 
 }
-a:link{
+#login a:link{
     text-decoration: none;
     color: darkorange;
    font-weight: lighter;
     border-color: whitesmoke;
 
 }
-a:hover{
+#login a:hover{
     text-decoration: none;
     color: darkorange;
     font-weight: bolder;
     border-color: whitesmoke;
 }
 
+#stu_show a:link{
+    text-decoration: none;
+    color: #fff;
+
+
+}
+#stu_show a:hover{
+    text-decoration: none;
+    color: #fff;
+    font-weight: bolder;
+}
+#stu_show a:visited{
+    text-decoration: none;
+    color: #fff;
+}
+#stu_show a:active {
+    text-decoration: none;
+    color: #fff;
+}
