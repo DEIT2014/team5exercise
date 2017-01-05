@@ -11,6 +11,7 @@ import 'dart:convert' show JSON;
 import '../lib/stu_class.dart';
 import'package:jsonx/jsonx.dart';
 import '../lib/subject.dart';
+
 Map<String, String> data = new Map();
 Map<String, String> value = new Map();
 Map<String, String> data1 = new Map();
@@ -106,8 +107,7 @@ Future<String> getDataFromDb_stu() async {
   return stuListJson;
 }
 
-    Future<String> getDataFromDb_sub() async {
-
+Future<String> getDataFromDb_sub() async {
       var results = await pool.query(
           'select stuname,stuid,math,deit,english,phy from xkcj_show');
       List<subject> subList=[];
@@ -117,7 +117,7 @@ Future<String> getDataFromDb_stu() async {
         sub.name=row.stuname;
         sub.id=row.stuid;
         sub.math=row.math;
-        sub.deit-row.math;
+        sub.deit=row.math;
         sub.english=row.english;
         sub.phy=row.phy;
 
@@ -169,8 +169,6 @@ Future<shelf.Response> forteaid(shelf.Request request) async {
 Future<shelf.Response> forsub(shelf.Request request) async {
   //从数据库获取数据
   String userName_sub = await getDataFromDb_sub();
-
-  //把这个post过来的数据有返回给客户端
   return new shelf.Response.ok(
       ' ${userName_sub}'
   );

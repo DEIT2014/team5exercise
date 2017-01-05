@@ -5,6 +5,4 @@ class subject{
   double english;
   double deit;
   double phy;
-
-
 }

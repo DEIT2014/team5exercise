@@ -295,8 +295,8 @@ onDataLoaded_tea(responseText) {
   var jsonString = responseText;
   var tea_allDATA1= JSON.decode(jsonString);
   var tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
-  querySelector('#tea_name').text=tea_allDATA2["teaname"].toString();
-  querySelector('#tea_num').text=tea_allDATA2["teaid"].toString();
+  querySelector('#tea_name').text="姓名："+tea_allDATA2["teaname"].toString();
+  querySelector('#tea_num').text="工号："+tea_allDATA2["teaid"].toString();
 /*var i;
    for(i=1;i<=30;i++) {
     querySelector('#stuname1').text = "学生姓名：" + stu_allDATA2["name"];
@@ -330,9 +330,9 @@ onDataLoaded_xkcj_detail(responseText){
   //用类实现有问题  List<student> stu= decode(responseText, type:const TypeHelper<List<student>>().type);
   List xkcj=JSON.decode(jsonString_xkcj);
   //第一位学生成绩信息
-  var stu_allDATA1= xkcj[0];
-  querySelector('#stu_name').text="姓名："+stu_allDATA1["name"];
-  querySelector('#stu_num').text="学号："+ stu_allDATA1["id"].toString();
+  var stu_allDATA1= xkcj[1];
+  querySelector('#stu_name_xkcj').text="姓名："+stu_allDATA1["name"];
+  querySelector('#stu_num_xkcj').text="学号："+ stu_allDATA1["id"].toString();
   querySelector("#deit_score").text =  stu_allDATA1["deit"].toString();
   querySelector("#math_score").text =  stu_allDATA1["math"].toString();
   querySelector("#english_score").text =  stu_allDATA1["english"].toString();
