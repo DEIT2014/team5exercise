@@ -114,9 +114,13 @@ Future<String> getDataFromDb_stu() async {
       await results.forEach((row) {
         //列出所有用户名
         var sub=new subject();
+        sub.name=row.stuname;
+        sub.id=row.stuid;
+        sub.math=row.math;
+        sub.deit-row.math;
+        sub.english=row.english;
+        sub.phy=row.phy;
 
-        sub.subject=row.subject;
-        sub.score= row.score;
 //从Object到JsonString的转换
         String subJson=encode(sub);
         print(subJson);
