@@ -236,7 +236,7 @@ onDataLoaded_stu(responseText) {
   querySelector("#xkcjscore").text =  stu_allDATA1["xkcj"].toString();
   querySelector("#xskyscore").text =  stu_allDATA1["xsky"].toString();
   querySelector("#shhdscore").text =  stu_allDATA1["shhd"].toString();
-  querySelector("#jxjlevelscore").text =  stu_allDATA1["jxj"];
+  //querySelector("#jxjlevelscore").text =  stu_allDATA1["jxj"];
   double zp;
   zp=stu_allDATA1["xkcj"]*0.7+ stu_allDATA1["xsky"]*0.2+stu_allDATA1["shhd"] *0.1;
   querySelector("#zpscore").text=  zp.toString();
