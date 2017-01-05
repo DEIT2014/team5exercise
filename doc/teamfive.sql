@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-12-15 07:36:54
+-- Generation Time: 2017-01-05 03:43:23
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,23 +23,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `stuinfo`
+-- 表的结构 `stugrade`
 --
 
-CREATE TABLE IF NOT EXISTS `stuinfo` (
+CREATE TABLE IF NOT EXISTS `stugrade` (
   `stuname` varchar(20) DEFAULT NULL,
   `stuid` int(20) DEFAULT NULL,
-  `xkcj` int(20) DEFAULT NULL,
-  `xsky` int(20) DEFAULT NULL,
-  `shhd` int(20) DEFAULT NULL,
+  `xkcj` float DEFAULT NULL,
+  `xsky` float DEFAULT NULL,
+  `shhd` float DEFAULT NULL,
   `jxj` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `stuinfo`
+-- 转存表中的数据 `stugrade`
 --
 
-INSERT INTO `stuinfo` (`stuname`, `stuid`, `xkcj`, `xsky`, `shhd`, `jxj`) VALUES
+INSERT INTO `stugrade` (`stuname`, `stuid`, `xkcj`, `xsky`, `shhd`, `jxj`) VALUES
 ('hua', 1001, 100, 100, 100, 'first'),
 ('yu', 1002, 80, 90, 80, 'second'),
 ('qing', 1003, 30, 40, 50, 'no'),
@@ -107,6 +107,27 @@ INSERT INTO `tealogin` (`teaid`, `teapassword`) VALUES
 (2002, 2002),
 (2003, 2003),
 (2004, 2004);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `xkcj_show`
+--
+
+CREATE TABLE IF NOT EXISTS `xkcj_show` (
+  `subject` varchar(20) DEFAULT NULL,
+  `score` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `xkcj_show`
+--
+
+INSERT INTO `xkcj_show` (`subject`, `score`) VALUES
+('deit', 80),
+('math', 90),
+('english', 95),
+('phy', 78);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
