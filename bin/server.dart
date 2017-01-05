@@ -10,7 +10,7 @@ import 'package:shelf_route/shelf_route.dart';
 import 'dart:convert' show JSON;
 import '../lib/stu_class.dart';
 import'package:jsonx/jsonx.dart';
-
+import '../lib/subject.dart';
 Map<String, String> data = new Map();
 Map<String, String> value = new Map();
 Map<String, String> data1 = new Map();
@@ -30,6 +30,7 @@ Future main(List<String> args)async {
   myRouter.get('/search',handleSearch);
   myRouter.get('/student/{stuid_x}', forstuid);
   myRouter.get('/teacher/{teaid_x}', forteaid);
+  myRouter.get('/subject/{subject_x}',forsub);
   //myRouter.get('/teacher/{teaid_x}/student/{stuid_m}', forteasearch);
   Map <String, String> corsHeader = new Map();
   corsHeader["Access-Control-Allow-Origin"] = "*";
@@ -53,6 +54,11 @@ Future main(List<String> args)async {
       return new Response.ok();
     }
     ///学生输入自己的学号进行登录操作
+    forsub(request)
+    {
+    return new Response.ok();
+    }
+    ///学生查看学科成绩细节
     forstuid(request)
     {
       return new Response.ok();
@@ -77,49 +83,48 @@ Future main(List<String> args)async {
 
 
 Future<String> getDataFromDb_stu() async {
-
   var results = await pool.query(
       'select stuname,stuid,xkcj,xsky,shhd,jxj from stugrade');
-  List<student> stuList=[];
+  List<student> stuList = [];
   await results.forEach((row) {
     //列出所有用户名
-    var stu=new student();
+    var stu = new student();
 
-    stu.name=row.stuname;
-    stu.id= row.stuid;
-    stu.xkcj= row.xkcj;
+    stu.name = row.stuname;
+    stu.id = row.stuid;
+    stu.xkcj = row.xkcj;
     stu.xsky = row.xsky;
     stu.shhd = row.shhd;
     stu.jxj = row.jxj;
 //从Object到JsonString的转换
-    String stuJson=encode(stu);
+    String stuJson = encode(stu);
     print(stuJson);
-
     stuList.add(stu);
-
-////*/从JsonString到Object的转换
-//    String value='{"name":"lily","id"="1"}';
-//    student stu2=decode(value,type: student);
-//    String stuJson2=encode(stu2);
-//    print(stuJson2);
-//    //从object数组到JsonString的转换
-//    var stuList=[];
-//    stuList.add(stu);
-//    stuList.add(stu2);
-//    String stuListJson=encode(stuList);
-//    print(stuListJson);
-//    List<student> stu=decode(stuListJson,type: const TypeHelper<List<student>>().type);*/
-
-    /*
-    String jsonValue = JSON.encode(value);
-    data[index] = stuJson;
-    i++;*/
   });
-  String stuListJson=encode(stuList);
+  String stuListJson = encode(stuList);
   print(stuListJson);
   return stuListJson;
-  // return sr;
+}
 
+    Future<String> getDataFromDb_sub() async {
+
+      var results = await pool.query(
+          'select stuname,stuid,math,deit,english,phy from xkcj_show');
+      List<subject> subList=[];
+      await results.forEach((row) {
+        //列出所有用户名
+        var sub=new subject();
+
+        sub.subject=row.subject;
+        sub.score= row.score;
+//从Object到JsonString的转换
+        String subJson=encode(sub);
+        print(subJson);
+        subList.add(sub);
+      });
+  String subListJson=encode(subList);
+  print(subListJson);
+  return subListJson;
 }
 
 Future<String> getDataFromDb_tea() async {
@@ -156,6 +161,17 @@ Future<shelf.Response> forteaid(shelf.Request request) async {
       ' ${userName_tea}'
   );
 }
+
+Future<shelf.Response> forsub(shelf.Request request) async {
+  //从数据库获取数据
+  String userName_sub = await getDataFromDb_sub();
+
+  //把这个post过来的数据有返回给客户端
+  return new shelf.Response.ok(
+      ' ${userName_sub}'
+  );
+}
+
 
 Future<shelf.Response> _echoRequest(shelf.Request request) async {
   //接受post过来的数据
