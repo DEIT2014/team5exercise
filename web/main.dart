@@ -131,6 +131,11 @@ void enter_stu(MouseEvent e) {
   var url = "$host/student/{stuid_x}"; // 链接到学生主页面
   var request = HttpRequest.getString(url).then(onDataLoaded_stu);
 /*
+  var url_xkcj = "              "; // 链接到学科成绩页面
+  var request_xkcj = HttpRequest.getString(url).then(onDataLoaded_xkcj);
+*/
+
+/*
 example:
   HttpRequest request;
   void main(){
@@ -211,7 +216,21 @@ onDataLoaded_stu(responseText) {
       }
     }
   });
- /* var jsonString = responseText;
+/*
+onDataLoaded_xkcj(responseText) {
+
+    var jsonString = responseText;
+    List stu=JSON.decode(jsonString);
+    //第一位学生的各科成绩信息
+    var xkcj_allDATA1= xkcj_show[0];//xkcj_show为数据库的表名
+
+    querySelector("#deit_score").text =  xkcj_allDATA1["deit"].toString();
+    querySelector("#mathscore").text =  xkcj_allDATA1["math"].toString();
+    querySelector("#englishscore").text =  xkcj_allDATA1["english"].toString();
+    querySelector("#phy_score").text =  xkcj_allDATA1["phy"];
+*/
+
+  /* var jsonString = responseText;
   Map stu_allDATA1= JSON.decode(jsonString);//应该是两次解码
   Map stu_allDATA2= JSON.decode( stu_allDATA1["stuname0"].toString());
   querySelector('#stu_name').text=""+ stu_allDATA2["stuname"];
