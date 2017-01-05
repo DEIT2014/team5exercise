@@ -66,6 +66,10 @@ void enter_stu_login(RouteEvent e) {
       .querySelector('#back')
       .style
       .display="block";
+  document
+      .querySelector('#xkcj_detail')
+      .style
+      .display="none";
   //querySelector('#stu_login').classes.add('selected');
   //querySelector('#tea_login').classes.remove('selected');
 
@@ -88,6 +92,10 @@ void enter_tea_login(RouteEvent e) {
       .querySelector('#back')
       .style
       .display="block";
+  document
+      .querySelector('#xkcj_detail')
+      .style
+      .display="none";
  // querySelector('#stu_login').classes.remove('selected');
   //querySelector('#tea_login').classes.add('selected');
 }
@@ -211,7 +219,7 @@ request.setRequestHeader("content-type";"");
 void stu_xkcj_detail(MouseEvent e) {
 //todo 访问数据库，获取所有学生数据，并格式化为json
 print("成功登陆");//调试
-var url = "$host/student/{stuid_x}"; // 链接到学生主页面
+var url = "$host/subject/{subject_x}"; // 链接到学生主页面
 var request = HttpRequest.getString(url).then(onDataLoaded_xkcj_detail);
 }
 
@@ -287,8 +295,8 @@ onDataLoaded_tea(responseText) {
   var jsonString = responseText;
   var tea_allDATA1= JSON.decode(jsonString);
   var tea_allDATA2= JSON.decode( tea_allDATA1["teaname0"].toString());
-  querySelector('#tea_name').text=tea_allDATA2["teaname"];
-  querySelector('#tea_id').text=tea_allDATA2["teaid"];
+  querySelector('#tea_name').text=tea_allDATA2["teaname"].toString();
+  querySelector('#tea_num').text=tea_allDATA2["teaid"].toString();
 /*var i;
    for(i=1;i<=30;i++) {
     querySelector('#stuname1').text = "学生姓名：" + stu_allDATA2["name"];
